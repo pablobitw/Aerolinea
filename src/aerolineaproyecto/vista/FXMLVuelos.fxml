@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: a4d8ed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aerolineaproyecto.controlador.FXMLVuelosController">
+   <children>
+      <TableView fx:id="tvVuelos" layoutX="17.0" layoutY="110.0" prefHeight="425.0" prefWidth="866.0" style="-fx-background-color: #d6ecf3; -fx-border-color: #FFFFFF;">
+        <columns>
+          <TableColumn fx:id="id" editable="false" prefWidth="33.0" text="ID" />
+          <TableColumn fx:id="numero_pasajeros" editable="false" prefWidth="89.0" text="No. pasajeros" />
+          <TableColumn fx:id="costo_boleto" editable="false" prefWidth="76.0" text="Costo" />
+          <TableColumn fx:id="tiempo_recorrido" editable="false" prefWidth="128.0" text="Tiempo de recorrido" />
+          <TableColumn fx:id="ciudad_salida" editable="false" prefWidth="46.0" text="Salida" />
+          <TableColumn fx:id="ciudad_llegada" editable="false" prefWidth="71.0" text="Llegada" />
+          <TableColumn fx:id="fecha_hora_salida" prefWidth="109.0" text="Fecha y Hora Salida" />
+          <TableColumn fx:id="hora_llegada" prefWidth="105.0" text="Fecha y Hora Llegada" />
+          <TableColumn prefWidth="90.0" text="Pilotos" />
+          <TableColumn prefWidth="117.0" text="Asistentes" />
+        </columns>
+      </TableView>
+      <!-- Botones y otros controles sin cambios -->
+      <Button mnemonicParsing="false" onAction="#btnLogoPresionado" prefHeight="96.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-border-color: transparent; -fx-cursor: hand;">
+         <graphic>
+            <ImageView fx:id="btnLogo" fitHeight="96.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@../recursos/logo%20pequeño.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button contentDisplay="TOP" graphicTextGap="1.0" layoutX="171.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnAgregar" prefHeight="56.0" prefWidth="104.0" style="-fx-background-color: #094368; -fx-background-radius: 12; -fx-padding: 8 20; -fx-cursor: hand;" styleClass="5" text="Agregar" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/1828926.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button contentDisplay="TOP" graphicTextGap="1.0" layoutX="743.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnExportar" prefHeight="50.0" prefWidth="104.0" style="-fx-background-color: #094368; -fx-background-radius: 12; -fx-padding: 8 20; -fx-cursor: hand;" styleClass="5" text="Exportar" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/exportar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button contentDisplay="TOP" graphicTextGap="1.0" layoutX="303.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="19.0" prefWidth="104.0" style="-fx-background-color: #094368; -fx-background-radius: 12; -fx-padding: 8 20; -fx-cursor: hand;" styleClass="5" text="Modificar" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button contentDisplay="TOP" graphicTextGap="1.0" layoutX="438.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #094368; -fx-background-radius: 12; -fx-padding: 8 20; -fx-cursor: hand;" styleClass="5" text="Eliminar" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/212121.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

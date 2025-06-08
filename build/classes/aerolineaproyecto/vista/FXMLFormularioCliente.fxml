@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="370.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aerolineaproyecto.controlador.FXMLFormularioClienteController">
+   <children>
+      <AnchorPane prefHeight="403.0" prefWidth="300.0" style="-fx-background-color: a4d8ed;">
+         <children>
+            <TextField fx:id="tfNombres" layoutX="57.0" layoutY="89.0" promptText="Nombres" />
+            <DatePicker fx:id="dpFechaNacimiento" layoutX="57.0" layoutY="203.0" prefHeight="31.0" prefWidth="200.0" promptText="Fecha de nacimiento" />
+            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/logo%20pequeño.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="99.0" layoutY="25.0" prefHeight="42.0" prefWidth="165.0" text="AGREGAR CLIENTE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfNacionalidad" layoutX="57.0" layoutY="262.0" promptText="Nacionalidad" />
+            <Button fx:id="btnCancelar" defaultButton="true" layoutX="33.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnCancelar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="164.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tfApellidos" layoutX="63.0" layoutY="150.0" promptText="Apellidos" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

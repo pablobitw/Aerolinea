@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "nombre": "Genaro Barradas Sanchez",
+    "user": "Lazlo",
+    "pass": "123456",
+    "genero": "M",
+    "rol": "",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Bugamilias ",
+    "fechaNacimiento": "2005-09-04",
+    "salario": 20000.0,
+    "horasTrabajo": 0,
+    "licencia": "PPL - Piloto Privado",
+    "horasVuelo": 8
+  }
+]
