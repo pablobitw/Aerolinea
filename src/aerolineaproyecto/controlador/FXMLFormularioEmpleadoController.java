@@ -43,8 +43,6 @@ public class FXMLFormularioEmpleadoController implements Initializable {
     @FXML
     private DatePicker dpFechaNacimiento;
     @FXML
-    private ComboBox<String> cbRol;
-    @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
@@ -159,8 +157,6 @@ tfIdiomas.setTextFormatter(new TextFormatter<>(change -> {
         if ("M".equals(empleado.getGenero())) rbMale.setSelected(true);
         else rbFemale.setSelected(true);
 
-        cbRol.setValue(empleado.getRol());
-
         switch (empleado.getTipoEmpleado()) {
             case "Piloto":
                 rbPiloto.setSelected(true);
@@ -234,7 +230,6 @@ private void btnGuardar(ActionEvent event) {
 
         String fechaNacimiento = dpFechaNacimiento.getValue().toString();
         String genero = rbMale.isSelected() ? "M" : "F";
-        String rol = (cbRol.getValue() != null) ? cbRol.getValue() : "";
 
         String tipoEmpleado;
         if (rbPiloto.isSelected()) tipoEmpleado = "Piloto";
@@ -260,7 +255,6 @@ private void btnGuardar(ActionEvent event) {
         empleadoGuardado.setUser(tfUser.getText());
         empleadoGuardado.setPass(tfPass.getText());
         empleadoGuardado.setGenero(genero);
-        empleadoGuardado.setRol(rol);
         empleadoGuardado.setTipoEmpleado(tipoEmpleado);
         empleadoGuardado.setDireccion(tfDireccion.getText());
         empleadoGuardado.setFechaNacimiento(fechaNacimiento);

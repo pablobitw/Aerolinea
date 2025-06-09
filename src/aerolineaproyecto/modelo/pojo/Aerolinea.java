@@ -1,34 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aerolineaproyecto.modelo.pojo;
-import java.util.List;
-/**
- *
- * @author PABLO
- */
+
 public class Aerolinea {
+
     private String id;
     private String nombre;
     private String direccion;
     private String contacto;
     private String telefono;
-    private List<Avion> aviones;
 
-    public Aerolinea() {
-    }
+    public Aerolinea() {}
 
-    public Aerolinea(String id, String nombre, String direccion, String contacto, String telefono, List<Avion> aviones) {
+    public Aerolinea(String id, String nombre, String direccion, String contacto, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.telefono = telefono;
-        this.aviones = aviones;
     }
 
-    // Getters y Setters
+    // Getters y setters
     public String getId() {
         return id;
     }
@@ -69,11 +59,14 @@ public class Aerolinea {
         this.telefono = telefono;
     }
 
-    public List<Avion> getAviones() {
-        return aviones;
-    }
-
-    public void setAviones(List<Avion> aviones) {
-        this.aviones = aviones;
+    @Override
+    public String toString() {
+        return "Aerolinea{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", contacto='" + contacto + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
     }
 }

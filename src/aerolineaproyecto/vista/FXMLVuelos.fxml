@@ -20,8 +20,9 @@
           <TableColumn fx:id="ciudad_llegada" editable="false" prefWidth="71.0" text="Llegada" />
           <TableColumn fx:id="fecha_hora_salida" prefWidth="109.0" text="Fecha y Hora Salida" />
           <TableColumn fx:id="hora_llegada" prefWidth="105.0" text="Fecha y Hora Llegada" />
-          <TableColumn prefWidth="90.0" text="Pilotos" />
-          <TableColumn prefWidth="117.0" text="Asistentes" />
+          <TableColumn fx:id="pilotos" prefWidth="90.0" text="Pilotos" />
+          <TableColumn fx:id="asistentes" prefWidth="57.0" text="Asistentes" />
+            <TableColumn fx:id="avion" prefWidth="75.0" text="Avion" />
         </columns>
       </TableView>
       <!-- Botones y otros controles sin cambios -->

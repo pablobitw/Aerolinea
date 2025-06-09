@@ -196,5 +196,23 @@ public class Empleado {
     public void setHorasVuelo(Integer horasVuelo) {
         this.horasVuelo = horasVuelo;
     }
+    @Override
+public String toString() {
+    return this.getNombre();  // o this.nombre si accedes directo al campo
+}
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+
+    Empleado other = (Empleado) obj;
+    return id != null && id.equals(other.id);
+}
+
+@Override
+public int hashCode() {
+    return java.util.Objects.hash(id);
+}
+
 
 }

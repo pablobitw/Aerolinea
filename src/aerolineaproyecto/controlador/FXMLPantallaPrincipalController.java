@@ -59,7 +59,23 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     private void btnIrBoletos(ActionEvent event) {
+        try {
+        Stage escenarioBase = (Stage) lbNombre.getScene().getWindow();
+
+        // cargo la nueva vista
+        FXMLLoader loader = new FXMLLoader(AerolineaProyecto.class.getResource("vista/FXMLBoletos.fxml"));
+        Parent vistaBoletos = loader.load();
+        Scene escenaBoletos = new Scene(vistaBoletos);
+        escenarioBase.setScene(escenaBoletos);
+        escenarioBase.setTitle("Gestión de Boletos");
+        escenarioBase.centerOnScreen();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar la vista de Vuelos: " + e.getMessage());
     }
+    }
+    
 
     @FXML
     private void btnIrVuelos(ActionEvent event) {

@@ -8,52 +8,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aerolineaproyecto.controlador.FXMLFormularioAerolineaController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aerolineaproyecto.controlador.FXMLFormularioAerolineaController">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: a4d8ed;">
+      <AnchorPane prefHeight="360.0" prefWidth="300.0" style="-fx-background-color: a4d8ed;">
          <children>
-            <TextField fx:id="tfNombre" layoutX="80.0" layoutY="77.0" promptText="Nombre Completo" />
-            <TextField fx:id="tfUser" layoutX="80.0" layoutY="210.0" promptText="Usuario" />
-            <TextField fx:id="tfPass" layoutX="78.0" layoutY="248.0" promptText="Contraseña" />
-            <TextField fx:id="tfSalario" layoutX="12.0" layoutY="395.0" promptText="Salario" />
-            <DatePicker fx:id="dpFechaNacimiento" layoutX="80.0" layoutY="112.0" prefHeight="25.0" prefWidth="149.0" promptText="Fecha de nacimiento" />
-            <ComboBox fx:id="cbRol" layoutX="80.0" layoutY="285.0" prefWidth="150.0" promptText="Rol" />
+            <TextField fx:id="tfNombre" layoutX="78.0" layoutY="76.0" promptText="Nombre" />
+            <TextField fx:id="TfNombreContacto" layoutX="78.0" layoutY="183.0" promptText="Nombre Contacto" />
+            <TextField fx:id="tfNumero" layoutX="78.0" layoutY="231.0" promptText="Numero Telefonico" />
             <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../recursos/logo%20pequeño.png" />
                </image>
             </ImageView>
-            <RadioButton fx:id="rbMale" layoutX="79.0" layoutY="180.0" mnemonicParsing="false" text="Masculino" />
-            <RadioButton fx:id="rbFemale" layoutX="163.0" layoutY="180.0" mnemonicParsing="false" text="Femenino" />
-            <Label layoutX="23.0" layoutY="180.0" text="Genero: " />
-            <Label layoutX="79.0" layoutY="23.0" prefHeight="42.0" prefWidth="165.0" text="AGREGAR EMPLEADO">
+            <Label layoutX="79.0" layoutY="23.0" prefHeight="42.0" prefWidth="188.0" text="AGREGAR AEROLINEA">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <TextField fx:id="tfDireccion" layoutX="78.0" layoutY="144.0" promptText="Direccion" />
-            <RadioButton fx:id="rbPiloto" layoutX="115.0" layoutY="355.0" mnemonicParsing="false" text="Piloto" />
-          <RadioButton fx:id="rbAsistente" layoutX="170.0" layoutY="355.0" mnemonicParsing="false" text="Asistente de Vuelo" />
-          <RadioButton fx:id="rbAdmin" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" text="Administrativo" />
-
-            <Label layoutX="86.0" layoutY="323.0" prefHeight="25.0" prefWidth="136.0" text="Tipo de Empleado">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tfIdiomas" layoutX="170.0" layoutY="434.0" promptText="Idiomas" />
-            <TextField fx:id="tfHoras" layoutX="163.0" layoutY="395.0" promptText="Horas" />
-            <ComboBox fx:id="cbLicencia" layoutX="11.0" layoutY="434.0" prefWidth="150.0" promptText="Tipo Licencia" />
-            <Button fx:id="btnCancelar" defaultButton="true" layoutX="46.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnCancelar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="btnCancelar" defaultButton="true" layoutX="43.0" layoutY="294.0" mnemonicParsing="false" onAction="#btnCancelar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnGuardar" defaultButton="true" layoutX="167.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="162.0" layoutY="294.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="17.0" prefWidth="110.0" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="tfID" layoutX="78.0" layoutY="110.0" promptText="No. Identifiacion" />
          </children>
       </AnchorPane>
    </children>

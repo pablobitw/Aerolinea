@@ -56,4 +56,9 @@ public class Avion {
     public void setPeso(double peso) {
         this.peso = peso;
     }
+    @Override
+public String toString() {
+    return "Avión " + modelo ;
+}
+
 }

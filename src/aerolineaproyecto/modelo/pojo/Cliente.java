@@ -58,4 +58,24 @@ public class Cliente {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    @Override
+public String toString() {
+    return nombres; // o cualquier campo representativo
+}
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    
+    Cliente other = (Cliente) obj;
+    return nombres.equals(other.nombres) &&
+           apellidos.equals(other.apellidos) &&
+           fechaNacimiento.equals(other.fechaNacimiento);
+}
+
+@Override
+public int hashCode() {
+    return java.util.Objects.hash(nombres, apellidos, fechaNacimiento);
+}
+
 }

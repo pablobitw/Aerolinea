@@ -34,6 +34,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 
@@ -66,9 +67,11 @@ public class FXMLEmpleadosController implements Initializable {
     @FXML
     private ImageView btnLogo;
     @FXML
-    private TableColumn<?, ?> tipoEmpleado;
+    private TableColumn<Empleado, String> tipoEmpleado; 
 
     private ObservableList<Empleado> listaEmpleados;
+    @FXML
+    private TextField tfBuscarEmpleado;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,6 +93,26 @@ public class FXMLEmpleadosController implements Initializable {
         listaEmpleados = FXCollections.observableArrayList(empleados);
         tvEmpleados.setItems(listaEmpleados);
     }
+    @FXML
+private void buscarEmpleado() {
+    String filtro = tfBuscarEmpleado.getText().toLowerCase();
+
+    if (filtro.isEmpty()) {
+        tvEmpleados.setItems(listaEmpleados); // Mostrar todos si está vacío
+    } else {
+        ObservableList<Empleado> filtrados = FXCollections.observableArrayList();
+
+        for (Empleado emp : listaEmpleados) {
+            if (emp.getNombre().toLowerCase().contains(filtro) || 
+                emp.getId().toLowerCase().contains(filtro)) {
+                filtrados.add(emp);
+            }
+        }
+
+        tvEmpleados.setItems(filtrados);
+    }
+}
+
 
     @FXML
     private void btnAgregar(ActionEvent event) {
