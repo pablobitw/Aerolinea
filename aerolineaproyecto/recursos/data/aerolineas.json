@@ -1,0 +1,37 @@
+[
+  {
+    "id": "AL001",
+    "nombre": "SkyWings",
+    "direccion": "Av. del Aeropuerto 123, Ciudad Aérea",
+    "contacto": "Laura Martínez",
+    "telefono": "+52 555 123 4567"
+  },
+  {
+    "id": "AL002",
+    "nombre": "AeroAndes",
+    "direccion": "Calle Volcán 456, Quito",
+    "contacto": "Carlos Gómez",
+    "telefono": "+593 2 345 6789"
+  },
+  {
+    "id": "AL003",
+    "nombre": "CostaFly",
+    "direccion": "Boulevard del Mar 789, San José",
+    "contacto": "Andrea Ramírez",
+    "telefono": "+506 2222 3344"
+  },
+  {
+    "id": "AL004",
+    "nombre": "Patagonia Air",
+    "direccion": "Ruta 40, El Calafate",
+    "contacto": "Sofía Herrera",
+    "telefono": "+54 2902 498765"
+  },
+  {
+    "id": "AL005",
+    "nombre": "AndesSur",
+    "direccion": "Av. Cordillera 321, La Paz",
+    "contacto": "Marcos Villarroel",
+    "telefono": "+591 2 777 8899"
+  }
+]

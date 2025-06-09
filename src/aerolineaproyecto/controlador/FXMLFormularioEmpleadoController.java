@@ -6,8 +6,13 @@ package aerolineaproyecto.controlador;
 
 import aerolineaproyecto.modelo.dao.EmpleadoDAO;
 import aerolineaproyecto.modelo.pojo.Empleado;
+import aerolineaproyecto.modelo.pojo.Piloto;
+import aerolineaproyecto.modelo.pojo.AsistenteVuelo;
+import aerolineaproyecto.modelo.pojo.Administrativo;
+import aerolineaproyecto.utilidad.Utilidad;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -20,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -35,265 +41,303 @@ import javafx.stage.Stage;
 public class FXMLFormularioEmpleadoController implements Initializable {
 
     @FXML
-    private TextField tfNombre;
+    private TextField tfNombre, tfHoras, tfRango, tfUser, tfPass, tfSalario, tfDireccion, tfIdiomas;
     @FXML
-    private TextField tfUser;
-    @FXML
-    private TextField tfPass;
+    private ComboBox<String> cbLicencia;
     @FXML
     private DatePicker dpFechaNacimiento;
     @FXML
-    private Button btnGuardar;
+    private RadioButton rbMale, rbFemale, rbPiloto, rbAsistente, rbAdmin;
     @FXML
-    private Button btnCancelar;
+    private Button btnGuardar, btnCancelar;
+
     @FXML
-    private RadioButton rbMale;
+    private ToggleGroup tgRol;  // Grupo para radio buttons de rol
     @FXML
-    private RadioButton rbFemale;
+private ToggleGroup tgGenero; // declara este atributo
+
+    private Empleado empleado;
+     private int ultimoIdNumerico = 0;
+
 
     private Consumer<Empleado> onEmpleadoGuardado;
-    @FXML
-    private TextField tfSalario;
-    @FXML
-    private TextField tfDireccion;
-    @FXML
-    private TextField tfIdiomas;
-    @FXML
-    private TextField tfHoras;
-    @FXML private RadioButton rbPiloto;
-@FXML private RadioButton rbAsistente;
-@FXML private RadioButton rbAdmin;
-@FXML private ComboBox<String> cbLicencia;
+    
 
-    private Empleado empleadoOriginal = null; // Para edición
+   @Override
+public void initialize(URL url, ResourceBundle rb) {
+    
+    tgGenero = new ToggleGroup();
+    rbMale.setToggleGroup(tgGenero);
+    rbFemale.setToggleGroup(tgGenero);
+    cbLicencia.setItems(FXCollections.observableArrayList("PPL", "CPL", "ATPL"));
+
+    tfNombre.setTextFormatter(new TextFormatter<>(c ->
+            c.getControlNewText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]*") ? c : null));
+
+    tgRol = new ToggleGroup();
+    rbPiloto.setToggleGroup(tgRol);
+    rbAsistente.setToggleGroup(tgRol);
+    rbAdmin.setToggleGroup(tgRol);
+
+    tgRol.selectedToggleProperty().addListener((obs, oldVal, newVal) -> actualizarFormulario());
+
+    //  Restringir fechas para mayores de 16 en 2025
+    dpFechaNacimiento.setDayCellFactory(picker -> new DateCell() {
+        @Override
+        public void updateItem(LocalDate date, boolean empty) {
+            super.updateItem(date, empty);
+            LocalDate fechaLimite = LocalDate.of(2009, 12, 31);
+            setDisable(empty || date.isAfter(fechaLimite));
+        }
+    });
+
+    actualizarFormulario();
+}
+
+    private void actualizarFormulario() {
+    // Deshabilitar todos los campos específicos inicialmente
+    tfHoras.setDisable(true);
+    cbLicencia.setDisable(true);
+    tfIdiomas.setDisable(true);
+
+    if (rbPiloto.isSelected()) {
+        tfHoras.setDisable(false);
+        cbLicencia.setDisable(false);
+    } else if (rbAsistente.isSelected()) {
+        tfHoras.setDisable(false);
+        tfIdiomas.setDisable(false);
+    } else if (rbAdmin.isSelected()) {
+        tfHoras.setDisable(false);
+    }
+}
+
+    public void cargarEmpleado(Empleado empleado) {
+        if (empleado == null) {
+            return;
+        }
+
+        this.empleado = empleado;
+
+        tfNombre.setText(empleado.getNombre());
+        tfUser.setText(empleado.getUser());
+        tfPass.setText(empleado.getPass());
+        tfDireccion.setText(empleado.getDireccion());
+        tfSalario.setText(String.valueOf(empleado.getSalario()));
+
+        if (empleado.getFechaNacimiento() != null && !empleado.getFechaNacimiento().isEmpty()) {
+            dpFechaNacimiento.setValue(LocalDate.parse(empleado.getFechaNacimiento(), DateTimeFormatter.ISO_DATE));
+        }
+
+        // Género
+        if ("Masculino".equalsIgnoreCase(empleado.getGenero())) {
+            rbMale.setSelected(true);
+        } else if ("Femenino".equalsIgnoreCase(empleado.getGenero())) {
+            rbFemale.setSelected(true);
+        }
+
+        // Rol y campos específicos
+        if (empleado instanceof Piloto) {
+            rbPiloto.setSelected(true);
+            Piloto piloto = (Piloto) empleado;
+            cbLicencia.setValue(piloto.getLicencia());
+            tfHoras.setText(String.valueOf(piloto.getHorasVuelo()));
+        } else if (empleado instanceof AsistenteVuelo) {
+            rbAsistente.setSelected(true);
+            AsistenteVuelo asistente = (AsistenteVuelo) empleado;
+            tfRango.setText(String.valueOf(asistente.getHorasAsistencia()));
+            tfIdiomas.setText(String.valueOf(asistente.getNumIdiomas()));
+        } else if (empleado instanceof Administrativo) {
+            rbAdmin.setSelected(true);
+            // Completa si Administrativo tiene campos extra
+        }
+
+        actualizarFormulario();
+    }
 
     public void setOnEmpleadoGuardado(Consumer<Empleado> onEmpleadoGuardado) {
         this.onEmpleadoGuardado = onEmpleadoGuardado;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cbLicencia.setItems(FXCollections.observableArrayList(
-            "PPL - Piloto Privado",
-            "CPL - Piloto Comercial",
-            "ATPL - Piloto de Transporte de Línea Aérea",
-            "MPL - Piloto Multitripulación",
-            "SPL - Piloto Deportivo",
-            "LAPL - Piloto de Aeronaves Ligeras"
-        ));
-        tfNombre.setTextFormatter(new TextFormatter<>(change -> {
-    if (change.getControlNewText().matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]*")) {
-        return change;
+  @FXML
+private void btnGuardar(ActionEvent event) {
+    actualizarFormulario(); // Asegurar campos habilitados
+
+    String id;
+    if (empleado != null) {
+        id = empleado.getId();
     } else {
-        return null;
+        // Incrementar el último ID numérico y construir nuevo ID
+        ultimoIdNumerico++;
+        id = "E" + ultimoIdNumerico;
     }
-}));
-        tfSalario.setTextFormatter(new TextFormatter<>(change -> {
-    if (change.getControlNewText().matches("\\d*(\\.\\d{0,2})?")) {
-        return change;
+
+    if (!validarCampos()) {
+        return;
+    }
+
+    String nombre = tfNombre.getText().trim();
+    String user = tfUser.getText().trim();
+
+    String passPlano = tfPass.getText().trim();
+    String pass = Utilidad.cifrarPassword(passPlano); // Cifrado de contraseña
+
+    String direccion = tfDireccion.getText().trim();
+    String fechaNacimiento = (dpFechaNacimiento.getValue() != null)
+            ? dpFechaNacimiento.getValue().format(DateTimeFormatter.ISO_DATE)
+            : "";
+    double salario;
+    try {
+        salario = Double.parseDouble(tfSalario.getText().trim());
+    } catch (NumberFormatException e) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Salario inválido.");
+        return;
+    }
+
+    if (tgGenero.getSelectedToggle() == null) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Debe seleccionar un género.");
+        return;
+    }
+
+    String genero = tgGenero.getSelectedToggle() == rbMale ? "Masculino" : "Femenino";
+
+    String tipoEmpleado = rbPiloto.isSelected() ? "Piloto" :
+                          rbAsistente.isSelected() ? "Asistente de Vuelo" :
+                          rbAdmin.isSelected() ? "Administrativo" : "";
+
+    if (tipoEmpleado.isEmpty()) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Debe seleccionar un rol.");
+        return;
+    }
+
+    if ("Piloto".equals(tipoEmpleado)) {
+        String licencia = cbLicencia.getValue();
+        if (licencia == null || licencia.isEmpty()) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Debe seleccionar una licencia.");
+            return;
+        }
+        int horasVuelo;
+        try {
+            horasVuelo = Integer.parseInt(tfHoras.getText().trim());
+        } catch (NumberFormatException e) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Horas de vuelo inválidas.");
+            return;
+        }
+
+        empleado = new Piloto(id, nombre, user, pass, genero, tipoEmpleado, direccion,
+                fechaNacimiento, salario, licencia, 0, horasVuelo);
+
+    } else if ("Asistente de Vuelo".equals(tipoEmpleado)) {
+        int horasAsistencia;
+        int numIdiomas;
+        try {
+            horasAsistencia = Integer.parseInt(tfHoras.getText().trim());
+        } catch (NumberFormatException e) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Horas de asistencia inválidas.");
+            return;
+        }
+        try {
+            numIdiomas = Integer.parseInt(tfIdiomas.getText().trim());
+        } catch (NumberFormatException e) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Número de idiomas inválido.");
+            return;
+        }
+
+        empleado = new AsistenteVuelo(id, nombre, user, pass, genero, tipoEmpleado, direccion,
+                fechaNacimiento, salario, horasAsistencia, numIdiomas);
+
+    } else if ("Administrativo".equals(tipoEmpleado)) {
+        int horasAdministrativas;
+        try {
+            horasAdministrativas = Integer.parseInt(tfHoras.getText().trim());
+        } catch (NumberFormatException e) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Horas administrativas inválidas.");
+            return;
+        }
+
+        empleado = new Administrativo(id, nombre, user, pass, genero, tipoEmpleado, direccion,
+                fechaNacimiento, salario, "", horasAdministrativas);
     } else {
-        return null;
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "Tipo de empleado no válido.");
+        return;
     }
-}));
-tfHoras.setTextFormatter(new TextFormatter<>(change -> {
-    return change.getControlNewText().matches("\\d*") ? change : null;
-}));
 
-tfIdiomas.setTextFormatter(new TextFormatter<>(change -> {
-    return change.getControlNewText().matches("\\d*") ? change : null;
-}));
-
-
-        cbLicencia.setVisible(false);
-        tfIdiomas.setVisible(false);
-        tfHoras.setVisible(false);
-
-        ToggleGroup grupoTipo = new ToggleGroup();
-        rbPiloto.setToggleGroup(grupoTipo);
-        rbAsistente.setToggleGroup(grupoTipo);
-        rbAdmin.setToggleGroup(grupoTipo);
-
-        grupoTipo.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == rbPiloto) {
-                cbLicencia.setVisible(true);
-                tfIdiomas.setVisible(false);
-                tfHoras.setVisible(true);
-            } else if (newVal == rbAsistente) {
-                cbLicencia.setVisible(false);
-                tfIdiomas.setVisible(true);
-                tfHoras.setVisible(true);
-            } else if (newVal == rbAdmin) {
-                cbLicencia.setVisible(false);
-                tfIdiomas.setVisible(false);
-                tfHoras.setVisible(true);
-            }
-        });
+    // Verificación de edad mínima (mayor de 16 en 2025)
+    LocalDate fecha = dpFechaNacimiento.getValue();
+    if (fecha == null || fecha.isAfter(LocalDate.of(2009, 12, 31))) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Error", "El empleado debe tener al menos 16 años en 2025.");
+        return;
     }
+
+    if (onEmpleadoGuardado != null) {
+        onEmpleadoGuardado.accept(empleado);
+    }
+
+    Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Éxito", "Empleado guardado correctamente.");
+
+    Stage stage = Utilidad.obtenerEscenarioComponente(btnGuardar);
+    stage.close();
+}
+
 
     @FXML
     private void btnCancelar(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmar salida");
-        alert.setHeaderText(null);
-        alert.setContentText("¿Está seguro que desea salir sin guardar?");
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
-                stage.close();
-            }
-        });
+        btnCancelar.getScene().getWindow().hide();
     }
 
-    public void llenarFormulario(Empleado empleado) {
-        this.empleadoOriginal = empleado; // Guardamos referencia para edición
-
-        tfNombre.setText(empleado.getNombre());
-        tfUser.setText(empleado.getUser());
-        tfPass.setText(empleado.getPass());
-        dpFechaNacimiento.setValue(LocalDate.parse(empleado.getFechaNacimiento()));
-        tfSalario.setText(String.valueOf(empleado.getSalario()));
-        tfDireccion.setText(empleado.getDireccion());
-
-        if ("M".equals(empleado.getGenero())) rbMale.setSelected(true);
-        else rbFemale.setSelected(true);
-
-        switch (empleado.getTipoEmpleado()) {
-            case "Piloto":
-                rbPiloto.setSelected(true);
-                cbLicencia.setValue(empleado.getLicencia());
-                tfHoras.setText(String.valueOf(empleado.getHorasVuelo()));
-                break;
-            case "AsistenteVuelo":
-                rbAsistente.setSelected(true);
-                tfIdiomas.setText(String.valueOf(empleado.getNumIdiomas()));
-                tfHoras.setText(String.valueOf(empleado.getHorasAsistencia()));
-                break;
-            case "Administrativo":
-                rbAdmin.setSelected(true);
-                tfHoras.setText(String.valueOf(empleado.getHorasTrabajo()));
-                break;
+    private boolean validarCampos() {
+        if (tgGenero.getSelectedToggle() == null) {
+         mostrarAlerta("Debe seleccionar un género.");
+        return false;
+}
+        if (tfNombre.getText().trim().isEmpty()) {
+            mostrarAlerta("El nombre no puede estar vacío.");
+            return false;
         }
-    }
-
-    @FXML
-private void btnGuardar(ActionEvent event) {
-    if (tfNombre.getText().isEmpty() || tfUser.getText().isEmpty() || tfPass.getText().isEmpty() ||
-        dpFechaNacimiento.getValue() == null || tfSalario.getText().isEmpty() || tfDireccion.getText().isEmpty() ||
-        (!rbMale.isSelected() && !rbFemale.isSelected()) ||
-        (!rbPiloto.isSelected() && !rbAsistente.isSelected() && !rbAdmin.isSelected())) {
-        showError("Debe completar todos los campos obligatorios.");
-        return;
-    }
-
-    // Validaciones específicas según el tipo de empleado
-    if (rbPiloto.isSelected()) {
-        if (cbLicencia.getValue() == null || tfHoras.getText().isEmpty()) {
-            showError("Debe seleccionar licencia y horas de vuelo para Piloto.");
-            return;
+        if (tfUser.getText().trim().isEmpty()) {
+            mostrarAlerta("El usuario no puede estar vacío.");
+            return false;
         }
-    } else if (rbAsistente.isSelected()) {
-        if (tfIdiomas.getText().isEmpty() || tfHoras.getText().isEmpty()) {
-            showError("Debe llenar idiomas y horas para Asistente.");
-            return;
+        if (tfPass.getText().trim().isEmpty()) {
+            mostrarAlerta("La contraseña no puede estar vacía.");
+            return false;
         }
-    } else if (rbAdmin.isSelected()) {
-        if (tfHoras.getText().isEmpty()) {
-            showError("Debe llenar horas para Administrativo.");
-            return;
+        if (dpFechaNacimiento.getValue() == null) {
+            mostrarAlerta("Debe seleccionar la fecha de nacimiento.");
+            return false;
         }
-    }
-
-    // Validaciones de contenido (formato)
-    if (!tfNombre.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]+")) {
-        showError("Nombre inválido. Solo se permiten letras.");
-        return;
-    }
-
-    if (!tfSalario.getText().matches("\\d+(\\.\\d{1,2})?")) {
-        showError("Salario inválido. Solo se permiten números (puede incluir decimales).");
-        return;
-    }
-
-    if (!tfHoras.getText().matches("\\d+")) {
-        showError("Horas inválidas. Solo se permiten números.");
-        return;
-    }
-
-    if (rbAsistente.isSelected() && !tfIdiomas.getText().matches("\\d+")) {
-        showError("Idiomas inválidos. Solo se permiten números.");
-        return;
-    }
-
-    try {
-        double salario = Double.parseDouble(tfSalario.getText());
-        int horas = Integer.parseInt(tfHoras.getText());
-
-        String fechaNacimiento = dpFechaNacimiento.getValue().toString();
-        String genero = rbMale.isSelected() ? "M" : "F";
-
-        String tipoEmpleado;
-        if (rbPiloto.isSelected()) tipoEmpleado = "Piloto";
-        else if (rbAsistente.isSelected()) tipoEmpleado = "AsistenteVuelo";
-        else tipoEmpleado = "Administrativo";
-
-        Empleado empleadoGuardado;
-
-        if (empleadoOriginal == null) {
-            // Nuevo empleado
-            List<Empleado> empleados = EmpleadoDAO.cargarEmpleados();
-            String nuevoId = EmpleadoDAO.generarNuevoId(empleados);
-
-            empleadoGuardado = new Empleado();
-            empleadoGuardado.setId(nuevoId);
-        } else {
-            // Edición
-            empleadoGuardado = new Empleado();
-            empleadoGuardado.setId(empleadoOriginal.getId());
+        if (!rbMale.isSelected() && !rbFemale.isSelected()) {
+            mostrarAlerta("Debe seleccionar un género.");
+            return false;
         }
-
-        empleadoGuardado.setNombre(tfNombre.getText());
-        empleadoGuardado.setUser(tfUser.getText());
-        empleadoGuardado.setPass(tfPass.getText());
-        empleadoGuardado.setGenero(genero);
-        empleadoGuardado.setTipoEmpleado(tipoEmpleado);
-        empleadoGuardado.setDireccion(tfDireccion.getText());
-        empleadoGuardado.setFechaNacimiento(fechaNacimiento);
-        empleadoGuardado.setSalario(salario);
-
-        switch (tipoEmpleado) {
-            case "Piloto":
-                empleadoGuardado.setLicencia(cbLicencia.getValue());
-                empleadoGuardado.setHorasVuelo(horas);
-                break;
-            case "AsistenteVuelo":
-                empleadoGuardado.setNumIdiomas(Integer.parseInt(tfIdiomas.getText()));
-                empleadoGuardado.setHorasAsistencia(horas);
-                break;
-            case "Administrativo":
-                empleadoGuardado.setHorasTrabajo(horas);
-                break;
+        if (!rbPiloto.isSelected() && !rbAsistente.isSelected() && !rbAdmin.isSelected()) {
+            mostrarAlerta("Debe seleccionar un rol.");
+            return false;
         }
-
-        if (onEmpleadoGuardado != null) {
-            onEmpleadoGuardado.accept(empleadoGuardado);
+        if (tfSalario.getText().trim().isEmpty()) {
+            mostrarAlerta("El salario no puede estar vacío.");
+            return false;
         }
-
-        Stage stage = (Stage) btnGuardar.getScene().getWindow();
-        stage.close();
-
-    } catch (NumberFormatException e) {
-        showError("Ingrese números válidos en salario, horas y/o idiomas.");
-    } catch (Exception e) {
-        showError("Error al guardar empleado: " + e.getMessage());
-        e.printStackTrace();
+        return true;
     }
+    
+public void cargarEmpleadosDesdeJson() {
+    List<Empleado> empleados = EmpleadoDAO.cargarEmpleados();
+    ultimoIdNumerico = empleados.stream()
+        .mapToInt(e -> Integer.parseInt(e.getId().substring(1)))
+        .max()
+        .orElse(0);
 }
 
-    private void showError(String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Error");
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.show();
+
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
     }
 }

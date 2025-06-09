@@ -2,60 +2,70 @@
   {
     "id": "AV001",
     "capacidad": 180,
+    "estado": true,
     "modelo": "Airbus A320",
     "peso": 73500
   },
   {
     "id": "AV002",
     "capacidad": 250,
+    "estado": true,
     "modelo": "Boeing 757",
     "peso": 98000
   },
   {
     "id": "AV003",
     "capacidad": 100,
+    "estado": true,
     "modelo": "Embraer E190",
     "peso": 51000
   },
   {
     "id": "AV004",
     "capacidad": 160,
+    "estado": true,
     "modelo": "Boeing 737",
     "peso": 70500
   },
   {
     "id": "AV005",
     "capacidad": 200,
+    "estado": true,
     "modelo": "Airbus A321",
     "peso": 89000
   },
   {
     "id": "AV006",
     "capacidad": 120,
+    "estado": true,
     "modelo": "Bombardier CRJ900",
     "peso": 38000
   },
   {
     "id": "AV007",
     "capacidad": 140,
+    "estado": true,
     "modelo": "Airbus A220",
     "peso": 60000
   },
   {
     "id": "AV008",
     "capacidad": 300,
+    "estado": true,
     "modelo": "Boeing 777",
     "peso": 155000
   },
   {
     "id": "AV009",
     "capacidad": 190,
+    "estado": true,    
     "modelo": "Airbus A310",
     "peso": 88000
   },
   {
     "id": "AV010",
     "capacidad": 240,
+    "estado": true,
     "modelo": "McDonnell Douglas MD-11",
     "peso": 125000
   }

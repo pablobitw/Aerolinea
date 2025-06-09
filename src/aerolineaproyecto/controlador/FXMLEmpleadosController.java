@@ -1,16 +1,14 @@
-
 package aerolineaproyecto.controlador;
 
 import aerolineaproyecto.modelo.dao.EmpleadoDAO;
 import aerolineaproyecto.modelo.pojo.Empleado;
 import aerolineaproyecto.utilidad.ExportadorDatos;
 import aerolineaproyecto.utilidad.Utilidad;
-import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -20,28 +18,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import com.google.gson.reflect.TypeToken;
-import java.io.File;
-import java.lang.reflect.Type;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
-
+import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
+ * 
  * @author Pablo Silva
  */
 public class FXMLEmpleadosController implements Initializable {
@@ -65,13 +57,15 @@ public class FXMLEmpleadosController implements Initializable {
     private TableColumn<Empleado, Double> salario;
 
     @FXML
-    private ImageView btnLogo;
-    @FXML
-    private TableColumn<Empleado, String> tipoEmpleado; 
+    private TableColumn<Empleado, String> tipoEmpleado;
 
-    private ObservableList<Empleado> listaEmpleados;
+    @FXML
+    private ImageView btnLogo;
+
     @FXML
     private TextField tfBuscarEmpleado;
+
+    private ObservableList<Empleado> listaEmpleados;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,26 +87,26 @@ public class FXMLEmpleadosController implements Initializable {
         listaEmpleados = FXCollections.observableArrayList(empleados);
         tvEmpleados.setItems(listaEmpleados);
     }
-    @FXML
-private void buscarEmpleado() {
-    String filtro = tfBuscarEmpleado.getText().toLowerCase();
 
-    if (filtro.isEmpty()) {
-        tvEmpleados.setItems(listaEmpleados); // Mostrar todos si está vacío
-    } else {
+    @FXML
+    private void buscarEmpleado() {
+        String filtro = tfBuscarEmpleado.getText().toLowerCase().trim();
+
+        if (filtro.isEmpty()) {
+            tvEmpleados.setItems(listaEmpleados);
+            return;
+        }
+
         ObservableList<Empleado> filtrados = FXCollections.observableArrayList();
 
         for (Empleado emp : listaEmpleados) {
-            if (emp.getNombre().toLowerCase().contains(filtro) || 
-                emp.getId().toLowerCase().contains(filtro)) {
+            if (emp.getNombre().toLowerCase().contains(filtro) || emp.getId().toLowerCase().contains(filtro)) {
                 filtrados.add(emp);
             }
         }
 
         tvEmpleados.setItems(filtrados);
     }
-}
-
 
     @FXML
     private void btnAgregar(ActionEvent event) {
@@ -120,94 +114,96 @@ private void buscarEmpleado() {
     }
 
     @FXML
-private void btnModificar(ActionEvent event) {
-    Empleado seleccionado = tvEmpleados.getSelectionModel().getSelectedItem();
+    private void btnModificar(ActionEvent event) {
+        Empleado seleccionado = tvEmpleados.getSelectionModel().getSelectedItem();
 
-    if (seleccionado == null) {
-        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Debe seleccionar un empleado para modificar");
-        return;
-    }
-
-    mostrarFormularioEmpleado(seleccionado);
-}
-
-private void mostrarFormularioEmpleado(Empleado empleado) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/aerolineaproyecto/vista/FXMLFormularioEmpleado.fxml"));
-        Parent root = loader.load();
-
-        FXMLFormularioEmpleadoController controller = loader.getController();
-
-        if (empleado != null) {
-            controller.llenarFormulario(empleado);
+        if (seleccionado == null) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Debe seleccionar un empleado para modificar");
+            return;
         }
 
-        controller.setOnEmpleadoGuardado(empGuardado -> {
-            if (empleado == null) {
-                // Nuevo empleado
-                listaEmpleados.add(empGuardado);
-            } else {
-                // Modificación
-                int index = listaEmpleados.indexOf(empleado);
-                if (index >= 0) {
-                    listaEmpleados.set(index, empGuardado);
-                }
+        mostrarFormularioEmpleado(seleccionado);
+    }
+
+    private void mostrarFormularioEmpleado(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aerolineaproyecto/vista/FXMLFormularioEmpleado.fxml"));
+            Parent root = loader.load();
+
+            FXMLFormularioEmpleadoController controller = loader.getController();
+
+            if (empleado != null) {
+                controller.cargarEmpleado(empleado);
             }
-            // Guardar en archivo
-            EmpleadoDAO.guardarEmpleados(new ArrayList<>(listaEmpleados));
-        });
 
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(new Scene(root));
-        stage.setTitle(empleado == null ? "Agregar Empleado" : "Modificar Empleado");
-        stage.showAndWait();
+            // Define un callback para actualizar la lista y guardar cambios
+            controller.setOnEmpleadoGuardado(empGuardado -> {
+                if (empleado == null) {
+                    listaEmpleados.add(empGuardado);
+                } else {
+                    int index = listaEmpleados.indexOf(empleado);
+                    if (index >= 0) {
+                        listaEmpleados.set(index, empGuardado);
+                    }
+                }
+                EmpleadoDAO.guardarEmpleados(new ArrayList<>(listaEmpleados));
+                tvEmpleados.refresh();
+            });
 
-    } catch (IOException ex) {
-        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Error al abrir formulario: " + ex.getMessage());
-        ex.printStackTrace();
-    }
-}
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.setTitle(empleado == null ? "Agregar Empleado" : "Modificar Empleado");
+            stage.showAndWait();
 
-@FXML
-private void btnEliminar(ActionEvent event) {
-    Empleado seleccionado = tvEmpleados.getSelectionModel().getSelectedItem();
-
-    if (seleccionado == null) {
-        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Debe seleccionar un empleado para eliminar");
-        return;
-    }
-
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Confirmar eliminación");
-    alert.setHeaderText(null);
-    alert.setContentText("¿Está seguro que desea eliminar el empleado seleccionado?");
-
-    alert.showAndWait().ifPresent(res -> {
-        if (res == ButtonType.OK) {
-            listaEmpleados.remove(seleccionado);
-            EmpleadoDAO.guardarEmpleados(new ArrayList<>(listaEmpleados));
+        } catch (IOException ex) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Error al abrir formulario: " + ex.getMessage());
+            ex.printStackTrace();
         }
-    });
-}
+    }
 
-@FXML
-private void btnExportar(ActionEvent event) {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Exportar empleados");
+    @FXML
+    private void btnEliminar(ActionEvent event) {
+        Empleado seleccionado = tvEmpleados.getSelectionModel().getSelectedItem();
 
-    fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("Archivo CSV (*.csv)", "*.csv"),
-        new FileChooser.ExtensionFilter("Archivo Excel (*.xls)", "*.xls"),
-        new FileChooser.ExtensionFilter("Archivo PDF (*.pdf)", "*.pdf")
-    );
+        if (seleccionado == null) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Debe seleccionar un empleado para eliminar");
+            return;
+        }
 
-    fileChooser.setInitialFileName("empleados");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar eliminación");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro que desea eliminar el empleado seleccionado?");
 
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    File selectedFile = fileChooser.showSaveDialog(stage);
+        alert.showAndWait().ifPresent(res -> {
+            if (res == ButtonType.OK) {
+                listaEmpleados.remove(seleccionado);
+                EmpleadoDAO.guardarEmpleados(new ArrayList<>(listaEmpleados));
+            }
+        });
+    }
 
-    if (selectedFile != null) {
+    @FXML
+    private void btnExportar(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar empleados");
+
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Archivo CSV (*.csv)", "*.csv"),
+            new FileChooser.ExtensionFilter("Archivo Excel (*.xls)", "*.xls"),
+            new FileChooser.ExtensionFilter("Archivo PDF (*.pdf)", "*.pdf")
+        );
+
+        fileChooser.setInitialFileName("empleados");
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+        if (selectedFile == null) {
+            return;
+        }
+
         String path = selectedFile.getAbsolutePath().toLowerCase();
 
         try {
@@ -218,17 +214,17 @@ private void btnExportar(ActionEvent event) {
             } else if (path.endsWith(".pdf")) {
                 ExportadorDatos.exportarPDF(listaEmpleados, selectedFile.getAbsolutePath());
             } else {
-                // Si el usuario no puso extensión, se asume .csv
+                // Si no se especifica extensión, se asume CSV
                 String pathCSV = selectedFile.getAbsolutePath() + ".csv";
                 ExportadorDatos.exportarCSV(listaEmpleados, pathCSV);
             }
-
             Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Éxito", "Archivo exportado correctamente.");
         } catch (Exception e) {
             Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error al exportar", e.getMessage());
+            e.printStackTrace();
         }
     }
-}
+
     @FXML
     private void btnLogoPresionado(ActionEvent event) {
         try {
@@ -243,7 +239,7 @@ private void btnExportar(ActionEvent event) {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "No se pudo cargar la pantalla principal.");
         }
     }
 }
-

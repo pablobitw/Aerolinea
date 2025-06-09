@@ -1,38 +1,27 @@
-package aerolineaproyecto.modelo.pojo;
-
 public class Aerolinea {
-
-    private String id;
-    private String nombre;
+    private int numeroIdentificacion; // antes: id (String)
     private String direccion;
+    private String nombre;
     private String contacto;
     private String telefono;
 
     public Aerolinea() {}
 
-    public Aerolinea(String id, String nombre, String direccion, String contacto, String telefono) {
-        this.id = id;
-        this.nombre = nombre;
+    public Aerolinea(int numeroIdentificacion, String direccion, String nombre,
+                     String contacto, String telefono) {
+        this.numeroIdentificacion = numeroIdentificacion;
         this.direccion = direccion;
+        this.nombre = nombre;
         this.contacto = contacto;
         this.telefono = telefono;
     }
 
-    // Getters y setters
-    public String getId() {
-        return id;
+    public int getNumeroIdentificacion() {
+        return numeroIdentificacion;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNumeroIdentificacion(int numeroIdentificacion) {
+        this.numeroIdentificacion = numeroIdentificacion;
     }
 
     public String getDireccion() {
@@ -43,12 +32,20 @@ public class Aerolinea {
         this.direccion = direccion;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getContacto() {
         return contacto;
     }
 
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
+    public void setContacto(String personaContacto) {
+        this.contacto = personaContacto;
     }
 
     public String getTelefono() {
@@ -61,12 +58,6 @@ public class Aerolinea {
 
     @Override
     public String toString() {
-        return "Aerolinea{" +
-                "id='" + id + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", contacto='" + contacto + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return numeroIdentificacion + " - " + nombre;
     }
 }

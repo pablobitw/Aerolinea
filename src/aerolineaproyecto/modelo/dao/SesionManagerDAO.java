@@ -18,27 +18,22 @@ import java.util.List;
  */
 public class SesionManagerDAO {
 
-    private static final String ARCHIVO_EMPLEADOS = "aerolineaproyecto/recursos/data/empleados.json";
+    private static final String ARCHIVO_JSON = "src/aerolineaproyecto/recursos/data/empleados.json";
 
-    public static Empleado verificarCredenciales(String user, String pass) {
-        try (InputStream inputStream = SesionManagerDAO.class.getClassLoader().getResourceAsStream(ARCHIVO_EMPLEADOS)) {
-          if (inputStream == null) {
-                System.out.println("No se encontró el archivo " + ARCHIVO_EMPLEADOS);
-                return null;
-            }
-            InputStreamReader reader = new InputStreamReader(inputStream);
-            Gson gson = new Gson();
-            Type tipoLista = new TypeToken<List<Empleado>>() {}.getType();
-            List<Empleado> empleados = gson.fromJson(reader, tipoLista);
+public static Empleado verificarCredenciales(String user, String pass) {
+    try (FileReader reader = new FileReader(ARCHIVO_JSON)) {
+        Gson gson = new Gson();
+        Type tipoLista = new TypeToken<List<Empleado>>() {}.getType();
+        List<Empleado> empleados = gson.fromJson(reader, tipoLista);
 
-            for (Empleado e : empleados) {
-                if (e.getUser().equals(user) && e.getPass().equals(pass)) {
-                    return e;
-                }
+        for (Empleado e : empleados) {
+            if (e.getUser().equals(user) && e.getPass().equals(pass)) {
+                return e;
             }
-        } catch (Exception e) {
-            System.out.println("Error al verificar credenciales: " + e.getMessage());
         }
-        return null;
+    } catch (Exception e) {
+        System.out.println("Error al verificar credenciales: " + e.getMessage());
     }
+    return null;
+}
 }

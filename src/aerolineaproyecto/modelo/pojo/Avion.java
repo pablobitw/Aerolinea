@@ -9,28 +9,24 @@ package aerolineaproyecto.modelo.pojo;
  * @author PABLO
  */
 public class Avion {
-    private String id;
     private int capacidad;
+    private boolean estado; 
+    private String id; 
     private String modelo;
     private double peso;
+    private Aerolinea aerolinea;
 
     public Avion() {
     }
 
-    public Avion(String id, int capacidad, String modelo, double peso) {
-        this.id = id;
+    public Avion(int capacidad, boolean estado,
+                 String id, String modelo, double peso, Aerolinea aerolinea) {
         this.capacidad = capacidad;
+        this.estado = estado;
+        this.id = id;
         this.modelo = modelo;
         this.peso = peso;
-    }
-
-    // Getters y Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.aerolinea = aerolinea;
     }
 
     public int getCapacidad() {
@@ -39,6 +35,14 @@ public class Avion {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
+    }
+
+    public String getMatricula() {
+        return id;
+    }
+
+    public void setMatricula(String matricula) {
+        this.id = matricula;
     }
 
     public String getModelo() {
@@ -56,9 +60,17 @@ public class Avion {
     public void setPeso(double peso) {
         this.peso = peso;
     }
-    @Override
-public String toString() {
-    return "Avión " + modelo ;
-}
 
+    public Aerolinea getAerolinea() {
+        return aerolinea;
+    }
+
+    public void setAerolinea(Aerolinea aerolinea) {
+        this.aerolinea = aerolinea;
+    }
+
+    @Override
+    public String toString() {
+        return "Avión " + modelo;
+    }
 }
