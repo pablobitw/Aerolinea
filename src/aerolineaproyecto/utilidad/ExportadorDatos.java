@@ -247,12 +247,13 @@ public static void exportarPDFAerolineas(List<Aerolinea> aerolineas, String nomb
           });
 
     for (Aerolinea aer : aerolineas) {
-        table.addCell(aer.getId());
-        table.addCell(aer.getNombre());
-        table.addCell(aer.getDireccion());
-        table.addCell(aer.getContacto());
-        table.addCell(aer.getTelefono());
-    }
+    table.addCell(String.valueOf(aer.getId())); // convertir int a String
+    table.addCell(aer.getNombre());
+    table.addCell(aer.getDireccion());
+    table.addCell(aer.getContacto());
+    table.addCell(aer.getTelefono());
+}
+
 
     document.add(table);
     document.close();
@@ -320,11 +321,12 @@ public static void exportarCSVAviones(List<Avion> aviones, String nombreArchivo)
                 });
 
         for (Avion avion : aviones) {
-            table.addCell(avion.getId());
+            table.addCell(String.valueOf(avion.getId()));        // <-- convertir int a String
             table.addCell(avion.getModelo());
-            table.addCell(String.valueOf(avion.getCapacidad()));
+            table.addCell(String.valueOf(avion.getCapacidad())); // convertir int a String
             table.addCell(String.format("%.2f", avion.getPeso()));
-        }
+}
+
 
         document.add(table);
         document.close();

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="319.0" prefWidth="503.0" style="-fx-background-color: #a4d8ed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aerolineaproyecto.controlador.FXMLComprarBoletoController">
+    
+    <children>
+        <VBox alignment="TOP_CENTER" layoutX="21.0" prefHeight="319.0" prefWidth="447.0" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0">
+            <children>
+
+                <!-- Logo e título -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <children>
+                        <ImageView fitHeight="57" fitWidth="50" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../recursos/logo%20pequeño.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="COMPRAR BOLETOS" textFill="#2c3e50">
+                            <font>
+                                <Font name="System Bold" size="24" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <VBox spacing="15.0">
+                    <children>
+                        <GridPane hgap="10.0" vgap="15.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Cliente:" />
+                                <ComboBox fx:id="cbCliente" prefHeight="35.0" prefWidth="266.0" promptText="Seleccionar cliente" GridPane.columnIndex="1" />
+                                <Label text="Fecha de Compra:" GridPane.rowIndex="1" />
+                                <DatePicker fx:id="dpFechaCompra" prefHeight="21.0" prefWidth="272.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label prefHeight="17.0" prefWidth="70.0" text="AsientoNo." GridPane.rowIndex="2" />
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <children>
+                                        <TextField fx:id="tfNumAsiento" editable="false" prefHeight="25.0" prefWidth="122.0" promptText="Seleccione un asiento" />
+                                        <Button fx:id="btnEscogerAsiento" mnemonicParsing="false" onAction="#btnEscogerAsiento" text="Escoger Asiento" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+
+                <!-- Botones originales de formulario aerolinea -->
+                <HBox alignment="CENTER" spacing="20">
+                    <padding>
+                        <Insets bottom="30" left="30" right="30" top="0" />
+                    </padding>
+                    <children>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelar" prefHeight="35" prefWidth="120" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Cancelar" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="15" />
+                            </font>
+                        </Button>
+
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="35" prefWidth="120" style="-fx-background-radius: 10px; -fx-background-color: #083f65; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="15" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

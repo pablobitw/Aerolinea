@@ -33,7 +33,7 @@ public class FXMLFormularioAvionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // No inicialización extra por ahora
+        
     }
 
     public void setOnAvionGuardado(Consumer<Avion> onAvionGuardado) {
@@ -41,14 +41,14 @@ public class FXMLFormularioAvionController implements Initializable {
     }
 
     public void llenarFormulario(Avion avion) {
-        this.avionEditar = avion;
-        if (avion != null) {
-            tfID.setText(avion.getId());
-            tfModelo.setText(avion.getModelo());
-            tfCapacidad.setText(String.valueOf(avion.getCapacidad()));
-            tfPeso.setText(String.valueOf(avion.getPeso()));
-        }
+    this.avionEditar = avion;
+    if (avion != null) {
+        tfID.setText(String.valueOf(avion.getId()));  // Convertir int a String
+        tfModelo.setText(avion.getModelo());
+        tfCapacidad.setText(String.valueOf(avion.getCapacidad()));
+        tfPeso.setText(String.valueOf(avion.getPeso()));
     }
+}
 
     @FXML
     private void btnCancelar(ActionEvent event) {
@@ -79,7 +79,10 @@ public class FXMLFormularioAvionController implements Initializable {
         }
 
         Avion avion = (avionEditar != null) ? avionEditar : new Avion();
-        avion.setId(id);
+
+        int idInt = Integer.parseInt(id); // si id es String, conviértelo a int
+
+        avion.setId(idInt);
         avion.setModelo(modelo);
         avion.setCapacidad(capacidad);
         avion.setPeso(peso);

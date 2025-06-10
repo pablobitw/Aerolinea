@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aerolineaproyecto.modelo.dao;
 
 import aerolineaproyecto.modelo.pojo.Aerolinea;
-import aerolineaproyecto.modelo.pojo.Vuelo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -23,11 +17,6 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- *
- * @author PABLO
- */
 
 public class AerolineaDAO {
 
@@ -62,7 +51,7 @@ public class AerolineaDAO {
 
     public static void guardarAerolineas(List<Aerolinea> aerolineas) {
         try {
-            File carpeta = new File("data");
+            File carpeta = new File("aerolineaproyecto/recursos/data");
             if (!carpeta.exists()) {
                 carpeta.mkdirs();
             }
@@ -84,7 +73,7 @@ public class AerolineaDAO {
     public static void actualizarAerolinea(Aerolinea aerolinea) {
         List<Aerolinea> aerolineas = cargarAerolineas();
         for (int i = 0; i < aerolineas.size(); i++) {
-            if (aerolineas.get(i).getId().equals(aerolinea.getId())) {
+            if (aerolineas.get(i).getId() == aerolinea.getId()) {
                 aerolineas.set(i, aerolinea);
                 break;
             }
@@ -92,9 +81,9 @@ public class AerolineaDAO {
         guardarAerolineas(aerolineas);
     }
 
-    public static void eliminarAerolinea(String id) {
+    public static void eliminarAerolinea(int id) {
         List<Aerolinea> aerolineas = cargarAerolineas();
-        aerolineas.removeIf(a -> a.getId().equals(id));
+        aerolineas.removeIf(a -> a.getId() == id);
         guardarAerolineas(aerolineas);
     }
 }

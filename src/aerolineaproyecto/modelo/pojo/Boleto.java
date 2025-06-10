@@ -13,17 +13,17 @@ import java.util.Date;
 public class Boleto {
     private String id;
     private Date fechaCompra;
-    private String numeroAsiento;
+    private String numAsiento;
     private Vuelo vuelo;
     private Cliente cliente;
 
     public Boleto() {
     }
 
-    public Boleto(String id, Date fechaCompra, String numeroAsiento, Vuelo vuelo, Cliente cliente) {
+    public Boleto(String id, Date fechaCompra, String numAsiento, Vuelo vuelo, Cliente cliente) {
         this.id = id;
         this.fechaCompra = fechaCompra;
-        this.numeroAsiento = numeroAsiento;
+        this.numAsiento = numAsiento;
         this.vuelo = vuelo;
         this.cliente = cliente;
     }
@@ -44,12 +44,12 @@ public class Boleto {
         this.fechaCompra = fechaCompra;
     }
 
-    public String getNumeroAsiento() {
-        return numeroAsiento;
+    public String getNumAsiento() {
+        return numAsiento;
     }
 
-    public void setNumeroAsiento(String numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
+    public void setNumAsiento(String numeroAsiento) {
+        this.numAsiento = numeroAsiento;
     }
 
     public Vuelo getVuelo() {
