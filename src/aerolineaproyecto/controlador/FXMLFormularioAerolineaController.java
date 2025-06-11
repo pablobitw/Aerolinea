@@ -81,7 +81,7 @@ public class FXMLFormularioAerolineaController {
         this.onAerolineaGuardada = onAerolineaGuardada;
     }
 
-    @FXML
+@FXML
 private void btnGuardar(ActionEvent event) {
     // Validar que no haya campos vacíos
     if (tfID.getText().trim().isEmpty() ||
@@ -89,21 +89,14 @@ private void btnGuardar(ActionEvent event) {
         tfDireccion.getText().trim().isEmpty() ||
         tfNombreContacto.getText().trim().isEmpty() ||
         tfNumero.getText().trim().isEmpty()) {
-
         Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Debe completar todos los campos.");
         return;
     }
 
-    int id;
-    try {
-        id = Integer.parseInt(tfID.getText().trim());
-    } catch (NumberFormatException e) {
-        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "El ID debe ser un número entero válido.");
-        return;
-    }
+    String id = tfID.getText().trim(); // Ya no necesitas convertir a int
 
     Aerolinea aerolinea = new Aerolinea(
-            id,
+            id, // Directamente como String
             tfNombre.getText().trim(),
             tfDireccion.getText().trim(),
             tfNombreContacto.getText().trim(),
@@ -115,13 +108,11 @@ private void btnGuardar(ActionEvent event) {
             AerolineaDAO.actualizarAerolinea(aerolinea);
         } else {
             boolean existe = AerolineaDAO.cargarAerolineas().stream()
-                    .anyMatch(a -> a.getId() == aerolinea.getId());
-
+                    .anyMatch(a -> a.getId().equals(aerolinea.getId())); // Cambiar == por .equals()
             if (existe) {
                 Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "Ya existe una aerolínea con ese ID.");
                 return;
             }
-
             AerolineaDAO.agregarAerolinea(aerolinea);
         }
     } catch (Exception e) {

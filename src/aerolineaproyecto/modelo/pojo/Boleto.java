@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aerolineaproyecto.modelo.pojo;
+
 import java.util.Date;
+
 /**
  *
  * @author PABLO
  */
-
-
 public class Boleto {
     private String id;
+    private int idVuelo;
     private Date fechaCompra;
     private String numAsiento;
     private Vuelo vuelo;
@@ -20,8 +17,9 @@ public class Boleto {
     public Boleto() {
     }
 
-    public Boleto(String id, Date fechaCompra, String numAsiento, Vuelo vuelo, Cliente cliente) {
+    public Boleto(String id, int idVuelo, Date fechaCompra, String numAsiento, Vuelo vuelo, Cliente cliente) {
         this.id = id;
+        this.idVuelo = idVuelo;
         this.fechaCompra = fechaCompra;
         this.numAsiento = numAsiento;
         this.vuelo = vuelo;
@@ -36,6 +34,17 @@ public class Boleto {
         this.id = id;
     }
 
+    public int getIdVuelo() {
+        if (vuelo != null) {
+            return vuelo.getId();
+        }
+        return idVuelo;
+    }
+
+    public void setIdVuelo(int idVuelo) {
+        this.idVuelo = idVuelo;
+    }
+
     public Date getFechaCompra() {
         return fechaCompra;
     }
@@ -48,8 +57,8 @@ public class Boleto {
         return numAsiento;
     }
 
-    public void setNumAsiento(String numeroAsiento) {
-        this.numAsiento = numeroAsiento;
+    public void setNumAsiento(String numAsiento) {
+        this.numAsiento = numAsiento;
     }
 
     public Vuelo getVuelo() {
@@ -58,6 +67,11 @@ public class Boleto {
 
     public void setVuelo(Vuelo vuelo) {
         this.vuelo = vuelo;
+        if (vuelo != null) {
+            this.idVuelo = vuelo.getId();
+        } else {
+            this.idVuelo = 0; // O el valor que consideres para "sin vuelo"
+        }
     }
 
     public Cliente getCliente() {

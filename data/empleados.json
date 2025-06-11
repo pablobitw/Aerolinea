@@ -345,5 +345,19 @@
     "direccion": "Munich",
     "fechaNacimiento": "2005-06-01",
     "salario": 20000.0
+  },
+  {
+    "licencia": "CPL - Piloto Comercial",
+    "aniosExperiencia": 0,
+    "horasVuelo": 10,
+    "id": "E1",
+    "nombre": "Ernesto Hernandez",
+    "user": "Ernesto123",
+    "pass": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "genero": "Masculino",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Madrid",
+    "fechaNacimiento": "2000-06-01",
+    "salario": 100000.0
   }
 ]

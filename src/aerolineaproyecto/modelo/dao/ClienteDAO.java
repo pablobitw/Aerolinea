@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ClienteDAO {
 
-    private static final String ARCHIVO_JSON = "src/aerolineaproyecto/recursos/data/clientes.json";
+    private static final String ARCHIVO_JSON = "data/clientes.json";
 
     public static List<Cliente> cargarClientes() {
         List<Cliente> clientes = new ArrayList<>();
@@ -23,7 +23,7 @@ public class ClienteDAO {
 
         if (!archivo.exists()) {
             System.err.println("No se encontró el archivo: " + archivo.getAbsolutePath());
-            return clientes; // Retorna lista vacía si no existe el archivo
+            return clientes; // Devuelve lista vacía si no existe
         }
 
         try (Reader reader = new InputStreamReader(new FileInputStream(archivo), StandardCharsets.UTF_8)) {
@@ -44,7 +44,7 @@ public class ClienteDAO {
     public static void guardarClientes(List<Cliente> clientes) {
         File archivo = new File(ARCHIVO_JSON);
         if (archivo.getParentFile() != null) {
-            archivo.getParentFile().mkdirs(); // Crear carpetas si no existen
+            archivo.getParentFile().mkdirs();
         }
 
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(archivo), StandardCharsets.UTF_8)) {

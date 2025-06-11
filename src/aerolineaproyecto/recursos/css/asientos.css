@@ -1,0 +1,23 @@
+
+.button.asiento-libre {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+}
+
+.button.asiento-ocupado {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-opacity: 1.0;
+    -fx-cursor: default;
+}
+
+.button.asiento-seleccionado {
+    -fx-background-color: #f1c40f;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+}

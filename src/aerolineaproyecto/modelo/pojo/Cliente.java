@@ -60,8 +60,9 @@ public class Cliente {
     }
     @Override
 public String toString() {
-    return nombres; // o cualquier campo representativo
+    return getNombres() + " " + getApellidos();
 }
+
 @Override
 public boolean equals(Object obj) {
     if (this == obj) return true;

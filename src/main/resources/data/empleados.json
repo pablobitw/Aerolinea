@@ -1,0 +1,363 @@
+[
+  {
+    "id": "E001",
+    "nombre": "Pablo Silva",
+    "user": "pabloobitw",
+    "pass": "1234",
+    "genero": "M",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "La revo",
+    "fechaNacimiento": "2003-04-12",
+    "salario": 200000.0
+  },
+  {
+    "id": "E002",
+    "nombre": "Astrid Torres",
+    "user": "bunny",
+    "pass": "12345",
+    "genero": "F",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "N/A",
+    "fechaNacimiento": "2005-12-30",
+    "salario": 0.0
+  },
+  {
+    "id": "E003",
+    "nombre": "Rodrigo Murrieta",
+    "user": "Boonts",
+    "pass": "123456",
+    "genero": "M",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Suiza #3",
+    "fechaNacimiento": "2004-04-07",
+    "salario": 10000.0
+  },
+  {
+    "id": "E005",
+    "nombre": "Diego Ramírez",
+    "user": "dramirez",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Calle del Viento 45, Madrid, España",
+    "fechaNacimiento": "1989-09-10",
+    "salario": 17500.0
+  },
+  {
+    "id": "E006",
+    "nombre": "Fernanda Torres",
+    "user": "ftorres",
+    "pass": "pass123",
+    "genero": "F",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Avenida del Sol 300, Barcelona, España",
+    "fechaNacimiento": "1995-02-28",
+    "salario": 18500.0
+  },
+  {
+    "id": "E007",
+    "nombre": "Luis Martínez",
+    "user": "lmartinez",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Rue Centrale 80, Lyon, Francia",
+    "fechaNacimiento": "1990-04-18",
+    "salario": 17200.0
+  },
+  {
+    "id": "E008",
+    "nombre": "Valeria Ríos",
+    "user": "vrios",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Avenue de la Liberté 10, Toulouse, Francia",
+    "fechaNacimiento": "1993-12-05",
+    "salario": 18000.0
+  },
+  {
+    "id": "E009",
+    "nombre": "José Pérez",
+    "user": "jperez",
+    "pass": "pass123",
+    "genero": "F",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Via delle Palme 102, Milán, Italia",
+    "fechaNacimiento": "1987-03-22",
+    "salario": 17000.0
+  },
+  {
+    "id": "E010",
+    "nombre": "Mónica Castillo",
+    "user": "mcastillo",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Calle del Olmo 55, Sevilla, España",
+    "fechaNacimiento": "1996-07-09",
+    "salario": 16500.0
+  },
+  {
+    "id": "E011",
+    "nombre": "Iván Morales",
+    "user": "imorales",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Jardins de Europa 67, Lisboa, Portugal",
+    "fechaNacimiento": "1988-10-12",
+    "salario": 17800.0
+  },
+  {
+    "id": "E012",
+    "nombre": "Daniela Flores",
+    "user": "dflores",
+    "pass": "pass123",
+    "genero": "F",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Paseo del Bosque 21, Granada, España",
+    "fechaNacimiento": "1991-01-25",
+    "salario": 18200.0
+  },
+  {
+    "id": "E013",
+    "nombre": "Ricardo Soto",
+    "user": "rsoto",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Avenida del Desierto 101, Zaragoza, España",
+    "fechaNacimiento": "1985-05-30",
+    "salario": 16000.0
+  },
+  {
+    "id": "E015",
+    "nombre": "Natalia Rivera",
+    "user": "nrivera",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Calle de la Luna 123, Valencia, España",
+    "fechaNacimiento": "1994-11-15",
+    "salario": 17600.0
+  },
+  {
+    "id": "E016",
+    "nombre": "Anna Müller",
+    "user": "amueller",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Mühlenstraße 18, Berlín, Alemania",
+    "fechaNacimiento": "1992-03-14",
+    "salario": 19000.0
+  },
+  {
+    "id": "E017",
+    "nombre": "João Silva",
+    "user": "jsilva",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Rua Augusta 101, Lisboa, Portugal",
+    "fechaNacimiento": "1986-07-19",
+    "salario": 16500.0
+  },
+  {
+    "id": "E018",
+    "nombre": "Élodie Dubois",
+    "user": "edubois",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Rue de la Paix 25, París, Francia",
+    "fechaNacimiento": "1993-09-27",
+    "salario": 17800.0
+  },
+  {
+    "id": "E019",
+    "nombre": "Luca Rossi",
+    "user": "lrossi",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Via Roma 90, Roma, Italia",
+    "fechaNacimiento": "1989-11-10",
+    "salario": 19200.0
+  },
+  {
+    "id": "E020",
+    "nombre": "Sophie Becker",
+    "user": "sbecker",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Kölnstraße 44, Colonia, Alemania",
+    "fechaNacimiento": "1990-06-05",
+    "salario": 16800.0
+  },
+  {
+    "id": "E021",
+    "nombre": "Hugo Martínez",
+    "user": "hmartinez",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Calle de San Juan 33, Bilbao, España",
+    "fechaNacimiento": "1987-12-22",
+    "salario": 17400.0
+  },
+  {
+    "id": "E022",
+    "nombre": "Inês Fernandes",
+    "user": "ifernandes",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Avenida dos Aliados 15, Oporto, Portugal",
+    "fechaNacimiento": "1994-04-30",
+    "salario": 18500.0
+  },
+  {
+    "id": "E023",
+    "nombre": "Pierre Moreau",
+    "user": "pmoreau",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Rue Saint-Michel 12, Burdeos, Francia",
+    "fechaNacimiento": "1988-08-08",
+    "salario": 16300.0
+  },
+  {
+    "id": "E024",
+    "nombre": "Giulia Bianchi",
+    "user": "gbianchi",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Strada Nuova 55, Génova, Italia",
+    "fechaNacimiento": "1991-05-19",
+    "salario": 17700.0
+  },
+  {
+    "id": "E025",
+    "nombre": "Fernando Díaz",
+    "user": "fdiaz",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Avenida de la Constitución 20, Málaga, España",
+    "fechaNacimiento": "1985-02-11",
+    "salario": 19000.0
+  },
+  {
+    "id": "E026",
+    "nombre": "Maja Kowalska",
+    "user": "mkowalska",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "ul. Marszałkowska 10, Varsovia, Polonia",
+    "fechaNacimiento": "1990-07-15",
+    "salario": 16000.0
+  },
+  {
+    "id": "E027",
+    "nombre": "Nils Johansson",
+    "user": "njohansson",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Kungsgatan 5, Estocolmo, Suecia",
+    "fechaNacimiento": "1987-11-02",
+    "salario": 19500.0
+  },
+  {
+    "id": "E028",
+    "nombre": "Katarina Novak",
+    "user": "knovak",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Trg Bana Jelačića 8, Zagreb, Croacia",
+    "fechaNacimiento": "1992-01-24",
+    "salario": 17000.0
+  },
+  {
+    "id": "E029",
+    "nombre": "Liam O\u0027Sullivan",
+    "user": "losullivan",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Dame Street 17, Dublín, Irlanda",
+    "fechaNacimiento": "1989-09-14",
+    "salario": 16500.0
+  },
+  {
+    "id": "E030",
+    "nombre": "Sofia Petrov",
+    "user": "spetrov",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "ul. Vitosha 35, Sofía, Bulgaria",
+    "fechaNacimiento": "1991-06-30",
+    "salario": 18000.0
+  },
+  {
+    "id": "E031",
+    "nombre": "Erik Hansen",
+    "user": "ehansen",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Strøget 12, Copenhague, Dinamarca",
+    "fechaNacimiento": "1988-05-05",
+    "salario": 17200.0
+  },
+  {
+    "id": "E032",
+    "nombre": "Marie Dubois",
+    "user": "mdubois",
+    "pass": "pass123",
+    "tipoEmpleado": "Administrativo",
+    "direccion": "Place Bellecour 3, Lyon, Francia",
+    "fechaNacimiento": "1993-12-10",
+    "salario": 16200.0
+  },
+  {
+    "id": "E033",
+    "nombre": "Jan Novak",
+    "user": "jnovak",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Náměstí Míru 7, Praga, República Checa",
+    "fechaNacimiento": "1986-04-21",
+    "salario": 18500.0
+  },
+  {
+    "id": "E034",
+    "nombre": "Isabel Fernández",
+    "user": "ifernandez",
+    "pass": "pass123",
+    "tipoEmpleado": "AsistenteVuelo",
+    "direccion": "Calle Gran Vía 40, Madrid, España",
+    "fechaNacimiento": "1990-10-29",
+    "salario": 17500.0
+  },
+  {
+    "id": "E035",
+    "nombre": "David Müller",
+    "user": "dmuller",
+    "pass": "pass123",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Bahnhofstraße 21, Zúrich, Suiza",
+    "fechaNacimiento": "1987-03-11",
+    "salario": 19000.0
+  },
+  {
+    "id": "E06",
+    "nombre": "Alex Fernandez",
+    "user": "Alex123",
+    "pass": "Alex123",
+    "genero": "Masculino",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Munich",
+    "fechaNacimiento": "2005-06-01",
+    "salario": 20000.0
+  },
+  {
+    "licencia": "CPL - Piloto Comercial",
+    "aniosExperiencia": 0,
+    "horasVuelo": 10,
+    "id": "E1",
+    "nombre": "Ernesto Hernandez",
+    "user": "Ernesto123",
+    "pass": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "genero": "Masculino",
+    "tipoEmpleado": "Piloto",
+    "direccion": "Madrid",
+    "fechaNacimiento": "2000-06-01",
+    "salario": 100000.0
+  }
+]

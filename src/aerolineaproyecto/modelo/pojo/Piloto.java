@@ -9,9 +9,9 @@ public class Piloto extends Empleado {
         super();
     }
 
-    public Piloto(String id, String nombre, String user, String pass, String genero,
-                  String tipoEmpleado, String direccion, String fechaNacimiento, double salario,
-                  String licencia, int aniosExperiencia, int horasVuelo) {
+        public Piloto(String id, String nombre, String user, String pass, String genero,
+                      String tipoEmpleado, String direccion, String fechaNacimiento, double salario,
+                      String licencia, int aniosExperiencia, int horasVuelo) {
         super(id, nombre, user, pass, genero, tipoEmpleado, direccion, fechaNacimiento, salario);
         this.licencia = licencia;
         this.aniosExperiencia = aniosExperiencia;

@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "AL001",
+    "nombre": "EuroWings",
+    "direccion": "Avenida del Aeropuerto 10, Madrid",
+    "contacto": "Isabel Fernández",
+    "telefono": "+34 91 123 4567"
+  },
+  {
+    "id": "AL002",
+    "nombre": "AlpenAir",
+    "direccion": "Flughafenstraße 22, Múnich",
+    "contacto": "Johann Meier",
+    "telefono": "+49 89 2345 6789"
+  },
+  {
+    "id": "AL003",
+    "nombre": "NordicFly",
+    "direccion": "Flygplatsvägen 5, Estocolmo",
+    "contacto": "Anna Lundgren",
+    "telefono": "+46 8 765 4321"
+  },
+  {
+    "id": "AL004",
+    "nombre": "GaelAir",
+    "direccion": "Shannon Airport Rd, Limerick",
+    "contacto": "Connor O'Brien",
+    "telefono": "+353 61 123 456"
+  },
+  {
+    "id": "AL005",
+    "nombre": "AlpiAvia",
+    "direccion": "Via Aeroporto 77, Milán",
+    "contacto": "Luca Bianchi",
+    "telefono": "+39 02 345 6789"
+  }
+]

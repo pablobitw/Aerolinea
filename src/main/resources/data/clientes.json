@@ -1,0 +1,44 @@
+[
+  {
+    "nombres": "María Fernanda",
+    "apellidos": "Gómez Ramírez",
+    "nacionalidad": "Mexicana",
+    "fechaNacimiento": "1995-07-22"
+  },
+  {
+    "nombres": "Luis Alberto",
+    "apellidos": "Pérez Torres",
+    "nacionalidad": "Colombiana",
+    "fechaNacimiento": "1988-11-10"
+  },
+  {
+    "nombres": "Ana Lucía",
+    "apellidos": "Rodríguez Soto",
+    "nacionalidad": "Costarricense",
+    "fechaNacimiento": "2000-03-15"
+  },
+  {
+    "nombres": "Juan Carlos",
+    "apellidos": "Mendoza Salazar",
+    "nacionalidad": "Peruana",
+    "fechaNacimiento": "1990-01-05"
+  },
+  {
+    "nombres": "Camila Andrea",
+    "apellidos": "Fernández Ríos",
+    "nacionalidad": "Chilena",
+    "fechaNacimiento": "1999-09-30"
+  },
+  {
+    "nombres": "Pablo",
+    "apellidos": "Silva",
+    "nacionalidad": "Mexicana",
+    "fechaNacimiento": "2020-06-12"
+  },
+  {
+    "nombres": "Phil",
+    "apellidos": "Jones",
+    "nacionalidad": "Inglesa",
+    "fechaNacimiento": "1991-06-13"
+  }
+]

@@ -9,6 +9,7 @@ import aerolineaproyecto.modelo.dao.ClienteDAO;
 import aerolineaproyecto.modelo.pojo.Boleto;
 import aerolineaproyecto.modelo.pojo.Cliente;
 import aerolineaproyecto.modelo.pojo.Vuelo;
+import aerolineaproyecto.utilidad.GenerarBoleto;
 import aerolineaproyecto.utilidad.Utilidad;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -31,6 +32,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +41,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -103,126 +106,118 @@ public class FXMLComprarBoletoController implements Initializable {
     }
 
     private void cargarClientes() {
-        try {
-            List<Cliente> clientes = clienteDAO.findAll();
-            ObservableList<Cliente> listaClientes = FXCollections.observableArrayList(clientes);
-            cbCliente.setItems(listaClientes);
-        } catch (IOException e) {
-            Utilidad.mostrarAlertaSimple(
-                javafx.scene.control.Alert.AlertType.ERROR,
-                "Error",
-                "No se pudieron cargar los clientes: " + e.getMessage()
-            );
-        }
+    List<Cliente> clientes = clienteDAO.cargarClientes();  
+    ObservableList<Cliente> listaClientes = FXCollections.observableArrayList(clientes);
+    cbCliente.setItems(listaClientes);
+}
+    
+    @FXML
+private void btnEscogerAsiento(ActionEvent event) {
+    if (vuelo == null) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.WARNING, "Error", "No se ha seleccionado un vuelo.");
+        return;
     }
 
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/aerolineaproyecto/vista/FXMLAsientos.fxml"));
+        Parent root = loader.load();
+
+        FXMLAsientosController controladorSelector = loader.getController();
+        controladorSelector.setVueloActual(vuelo);  // Asegúrate de tener este método
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Seleccionar Asiento");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        // Recibir la lista de asientos seleccionados
+        List<String> asientosSeleccionados = (List<String>) stage.getUserData();
+        if (asientosSeleccionados != null && !asientosSeleccionados.isEmpty()) {
+            tfNumAsiento.setText(String.join(", ", asientosSeleccionados));
+        }
+
+    } catch (IOException e) {
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "No se pudo abrir el selector de asientos: " + e.getMessage());
+    }
+}
+
     @FXML
-    private void btnEscogerAsiento(ActionEvent event) {
-        if (vuelo == null) {
+private void btnGuardar(ActionEvent event) {
+    if (!validarCampos()) {
+        return;
+    }
+
+    Cliente clienteSeleccionado = cbCliente.getValue();
+    LocalDate fechaCompra = dpFechaCompra.getValue();
+    String numAsiento = tfNumAsiento.getText().trim();
+
+    try {
+        List<Boleto> boletosExistentes = boletoDAO.findByVuelo(vuelo.getId());
+
+        boolean asientoOcupado = boletosExistentes.stream()
+                .anyMatch(b -> b.getNumAsiento().equals(numAsiento));
+
+        if (asientoOcupado) {
             Utilidad.mostrarAlertaSimple(
-                javafx.scene.control.Alert.AlertType.WARNING,
-                "Error",
-                "No se ha seleccionado un vuelo."
+                Alert.AlertType.WARNING,
+                "Asiento ocupado",
+                "El asiento " + numAsiento + " ya está ocupado. Por favor seleccione otro."
             );
             return;
         }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aerolineaproyecto/vista/FXMLAsientos.fxml"));
-            Parent root = loader.load();
+        Boleto nuevoBoleto = new Boleto();
+        nuevoBoleto.setId(UUID.randomUUID().toString());
+        nuevoBoleto.setVuelo(vuelo);
+        nuevoBoleto.setIdVuelo(vuelo.getId());
+        nuevoBoleto.setCliente(clienteSeleccionado);
+        nuevoBoleto.setFechaCompra(Date.from(fechaCompra.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        nuevoBoleto.setNumAsiento(numAsiento);
 
-            FXMLAsientosController controladorSelector = loader.getController();
-            controladorSelector.setVuelo(vuelo);
+        boolean guardado = boletoDAO.save(nuevoBoleto);
+        if (guardado) {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "Compra Exitosa", "El boleto ha sido comprado.");
 
-            Scene scene = new Scene(root);
+            vuelo.setNumPasajeros(vuelo.getNumeroPasajeros() + 1);
 
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Seleccionar Asiento");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-            String asientoSeleccionado = (String) stage.getUserData();
-            if (asientoSeleccionado != null) {
-                tfNumAsiento.setText(asientoSeleccionado);
-            }
-
-        } catch (IOException e) {
-            Utilidad.mostrarAlertaSimple(
-                javafx.scene.control.Alert.AlertType.ERROR,
-                "Error",
-                "No se pudo abrir el selector de asientos: " + e.getMessage()
-            );
-        }
-    }
-
-    @FXML
-    private void btnGuardar(ActionEvent event) {
-        if (!validarCampos()) {
-            return;
-        }
-
-        Cliente clienteSeleccionado = cbCliente.getValue();
-        LocalDate fechaCompra = dpFechaCompra.getValue();
-        String numAsiento = tfNumAsiento.getText().trim();
-
-        try {
-            List<Boleto> boletosExistentes = boletoDAO.findByVuelo(vuelo.getId());
-            boolean asientoOcupado = boletosExistentes.stream()
-                    .anyMatch(b -> b.getNumAsiento().equals(numAsiento));
-
-            if (asientoOcupado) {
-                Utilidad.mostrarAlertaSimple(
-                    javafx.scene.control.Alert.AlertType.WARNING,
-                    "Asiento ocupado",
-                    "El asiento " + numAsiento + " ya está ocupado. Por favor seleccione otro."
-                );
-                return;
-            }
-
-            Boleto nuevoBoleto = new Boleto();
-            nuevoBoleto.setId(generarIdBoleto());
-            nuevoBoleto.setVuelo(vuelo);
-            nuevoBoleto.setCliente(clienteSeleccionado);
-            nuevoBoleto.setFechaCompra(Date.from(fechaCompra.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            nuevoBoleto.setNumAsiento(numAsiento);
-
-            boletoDAO.save(nuevoBoleto);
-
-            vuelo.setCantidadPasajeros(vuelo.getCantidadPasajeros() + 1);
-
-            // Elegir archivo para guardar PDF
+            // Abrir diálogo para elegir dónde guardar el PDF
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Guardar Boleto PDF");
-            fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("PDF (*.pdf)", "*.pdf"));
-            fileChooser.setInitialFileName("Boleto_" + nuevoBoleto.getId() + ".pdf");
+            fileChooser.setTitle("Guardar boleto PDF");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+            fileChooser.setInitialFileName("boleto_" + nuevoBoleto.getId() + ".pdf");
+
             File archivo = fileChooser.showSaveDialog(btnGuardar.getScene().getWindow());
 
             if (archivo != null) {
-               
-                GenerarBoleto.generarPDF(clienteSeleccionado, vuelo, archivo.getAbsolutePath());
-                Utilidad.mostrarAlertaSimple(
-                    javafx.scene.control.Alert.AlertType.INFORMATION,
-                    "Compra exitosa",
-                    "El boleto ha sido comprado y guardado en PDF correctamente."
-                );
+                try {
+                    GenerarBoleto.generarPDF(clienteSeleccionado, vuelo, nuevoBoleto, archivo.getAbsolutePath());
+                    Utilidad.mostrarAlertaSimple(Alert.AlertType.INFORMATION, "PDF Generado", "El boleto PDF se ha guardado correctamente.");
+                } catch (Exception e) {
+                    Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error PDF", "No se pudo generar el PDF: " + e.getMessage());
+                    e.printStackTrace();
+                }
             }
 
+            // Refrescar la lista en el controlador padre
             if (boletosController != null) {
-                boletosController.refrescarVuelos();
+                boletosController.cargarBoletos();
             }
 
+            // Cerrar ventana
             cerrarVentana();
 
-        } catch (Exception e) {
-            Utilidad.mostrarAlertaSimple(
-                javafx.scene.control.Alert.AlertType.ERROR,
-                "Error",
-                "No se pudo completar la compra: " + e.getMessage()
-            );
+        } else {
+            Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "No se pudo comprar el boleto.");
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", "No se pudo completar la compra: " + (e.getMessage() != null ? e.getMessage() : e.toString()));
     }
+}
+
 
     private boolean validarCampos() {
         if (cbCliente.getValue() == null) {

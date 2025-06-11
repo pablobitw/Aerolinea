@@ -144,7 +144,7 @@ public class FXMLVuelosController implements Initializable {
         
         Optional<ButtonType> resultado = alertaConfirmacion.showAndWait();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            if (VueloDAO.eliminarVuelo(vueloSeleccionado)) {
+            if (VueloDAO.eliminarVuelo(vueloSeleccionado.getId())) {
                 mostrarAlerta("Eliminación", "Vuelo eliminado correctamente.");
                 cargarVuelos();
             } else {
@@ -180,20 +180,17 @@ private void btnExportar(ActionEvent event) {
         try {
             if (path.endsWith(".csv")) {
                 ExportadorDatos.exportarCSVVuelos(listaVuelos, selectedFile.getAbsolutePath());
-            } else if (path.endsWith(".xls")) {
+            } else if (path.endsWith(".xls") || path.endsWith(".xlsx")) {
                 ExportadorDatos.exportarExcelVuelos(listaVuelos, selectedFile.getAbsolutePath());
             } else if (path.endsWith(".pdf")) {
                 ExportadorDatos.exportarPDFVuelos(listaVuelos, selectedFile.getAbsolutePath());
             } else {
-                // Si no especificó extensión, por defecto CSV
-                String pathCSV = selectedFile.getAbsolutePath() + ".csv";
-                ExportadorDatos.exportarCSVVuelos(listaVuelos, pathCSV);
+                mostrarAlerta("Exportación", "Formato no soportado.");
             }
-
-            mostrarAlerta("Exportación", "Archivo exportado correctamente.");
+            mostrarAlerta("Exportación", "Exportación exitosa: " + selectedFile.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "Ocurrió un error al exportar los archivos: " + e.getMessage());
+            mostrarAlerta("Error", "No se pudo exportar el archivo: " + e.getMessage());
         }
     }
 }

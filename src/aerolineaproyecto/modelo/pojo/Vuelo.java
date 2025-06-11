@@ -182,4 +182,7 @@ public class Vuelo {
     }
     return "N/A";
 }
+   public void setNumPasajeros(int numeroPasajeros) {
+    this.numeroPasajeros = numeroPasajeros;
+}
 }

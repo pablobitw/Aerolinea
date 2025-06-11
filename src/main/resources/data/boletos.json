@@ -1,0 +1,703 @@
+[
+  {
+    "id": "TKT1749546214491",
+    "idVuelo": 1,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "01A",
+    "vuelo": {
+      "id": 1,
+      "numeroPasajeros": 186,
+      "costoBoleto": 3850.0,
+      "tiempoRecorrido": "2.58",
+      "ciudadSalida": "Ciudad de México",
+      "ciudadLlegada": "Cancún",
+      "fechaSalida": "2025-06-15",
+      "horaSalida": {
+        "hour": 8,
+        "minute": 45,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-15",
+      "horaLlegada": {
+        "hour": 11,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "avion": {
+        "capacidad": 290,
+        "estado": true,
+        "id": 1,
+        "modelo": "Boeing 787-9",
+        "peso": 126000.0,
+        "aerolinea": {
+          "id": 2,
+          "direccion": "Calle Gran Vía 45, 28013 Madrid, España",
+          "nombre": "AeroLuxe",
+          "contacto": "Javier Torres",
+          "telefono": "91 234 5678"
+        }
+      },
+      "piloto1": {
+        "id": "PIL-91193",
+        "nombre": "Sergio Martín Ruiz",
+        "user": "smartinr",
+        "pass": "pass1",
+        "genero": "Masculino",
+        "tipoEmpleado": "Pilot",
+        "direccion": "Calle Serrano 50, Madrid, España",
+        "fechaNacimiento": "1987-09-06",
+        "salario": 5400.0
+      },
+      "piloto2": {
+        "id": "PIL-63700",
+        "nombre": "Javier Alonso Pérez",
+        "user": "japerez",
+        "pass": "pass2",
+        "genero": "Masculino",
+        "tipoEmpleado": "Pilot",
+        "direccion": "Calle Alcalá 100, Madrid, España",
+        "fechaNacimiento": "1982-11-20",
+        "salario": 5500.0
+      },
+      "asistente1": {
+        "id": "AST-85314",
+        "nombre": "Pablo García",
+        "user": "pgarcia",
+        "pass": "pass3",
+        "genero": "Masculino",
+        "tipoEmpleado": "Assistant",
+        "direccion": "Calle Mayor 12, Madrid, España",
+        "fechaNacimiento": "1991-06-01",
+        "salario": 1800.0
+      },
+      "piloto": {
+        "id": "PIL-91193",
+        "nombre": "Sergio Martín Ruiz",
+        "user": "smartinr",
+        "pass": "pass1",
+        "genero": "Masculino",
+        "tipoEmpleado": "Pilot",
+        "direccion": "Calle Serrano 50, Madrid, España",
+        "fechaNacimiento": "1987-09-06",
+        "salario": 5400.0
+      },
+      "asistenteVuelo": {
+        "id": "AST-85314",
+        "nombre": "Pablo García",
+        "user": "pgarcia",
+        "pass": "pass3",
+        "genero": "Masculino",
+        "tipoEmpleado": "Assistant",
+        "direccion": "Calle Mayor 12, Madrid, España",
+        "fechaNacimiento": "1991-06-01",
+        "salario": 1800.0
+      }
+    },
+    "cliente": {
+      "nombres": "Pablo",
+      "apellidos": "Silva",
+      "nacionalidad": "Mexicano",
+      "fechaNacimiento": "1990-01-01"
+    }
+  },
+  {
+    "idVuelo": 2,
+    "numAsiento": "C5"
+  },
+  {
+    "idVuelo": 2,
+    "numAsiento": "A4"
+  },
+  {
+    "idVuelo": 2,
+    "numAsiento": "D6"
+  },
+  {
+    "id": "5e37fdf4-0ab8-44c4-a14d-3b49fe480b09",
+    "idVuelo": 0,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "D5",
+    "vuelo": {
+      "id": 10,
+      "numeroPasajeros": 180,
+      "costoBoleto": 150.0,
+      "tiempoRecorrido": "8 hr, 30 min",
+      "ciudadSalida": "Gales",
+      "ciudadLlegada": "Turquia",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E009",
+        "nombre": "José Pérez",
+        "user": "jperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Av. Las Palmas 102, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 17000.0
+      },
+      "piloto2": {
+        "id": "E033",
+        "nombre": "Miguel Álvarez",
+        "user": "malvarez",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Calle Olmo 55, Cancún",
+        "fechaNacimiento": "1989-09-12",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E011",
+        "nombre": "Iván Morales",
+        "user": "imorales",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 67, Querétaro",
+        "fechaNacimiento": "1988-10-12",
+        "salario": 17800.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E025",
+        "nombre": "Lucía Pérez",
+        "user": "lperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Reforma 150, Monterrey",
+        "fechaNacimiento": "1996-11-15",
+        "salario": 18000.0
+      },
+      "asistente4": {
+        "id": "E026",
+        "nombre": "Elena Sánchez",
+        "user": "esanchez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 22, Puebla",
+        "fechaNacimiento": "1993-03-30",
+        "salario": 17200.0
+      }
+    },
+    "cliente": {
+      "nombres": "Camila Andrea",
+      "apellidos": "Fernández Ríos",
+      "nacionalidad": "Chilena",
+      "fechaNacimiento": "1999-09-30"
+    }
+  },
+  {
+    "id": "a9a55e92-4f52-4d21-a8cb-3db0fa23d6a7",
+    "idVuelo": 0,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "D6",
+    "vuelo": {
+      "id": 10,
+      "numeroPasajeros": 180,
+      "costoBoleto": 150.0,
+      "tiempoRecorrido": "8 hr, 30 min",
+      "ciudadSalida": "Gales",
+      "ciudadLlegada": "Turquia",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E009",
+        "nombre": "José Pérez",
+        "user": "jperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Av. Las Palmas 102, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 17000.0
+      },
+      "piloto2": {
+        "id": "E033",
+        "nombre": "Miguel Álvarez",
+        "user": "malvarez",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Calle Olmo 55, Cancún",
+        "fechaNacimiento": "1989-09-12",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E011",
+        "nombre": "Iván Morales",
+        "user": "imorales",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 67, Querétaro",
+        "fechaNacimiento": "1988-10-12",
+        "salario": 17800.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E025",
+        "nombre": "Lucía Pérez",
+        "user": "lperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Reforma 150, Monterrey",
+        "fechaNacimiento": "1996-11-15",
+        "salario": 18000.0
+      },
+      "asistente4": {
+        "id": "E026",
+        "nombre": "Elena Sánchez",
+        "user": "esanchez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 22, Puebla",
+        "fechaNacimiento": "1993-03-30",
+        "salario": 17200.0
+      }
+    },
+    "cliente": {
+      "nombres": "Luis Alberto",
+      "apellidos": "Pérez Torres",
+      "nacionalidad": "Colombiana",
+      "fechaNacimiento": "1988-11-10"
+    }
+  },
+  {
+    "id": "b4ab0b75-980e-474f-8275-210ab896d1cb",
+    "idVuelo": 0,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "A1",
+    "vuelo": {
+      "id": 10,
+      "numeroPasajeros": 180,
+      "costoBoleto": 150.0,
+      "tiempoRecorrido": "8 hr, 30 min",
+      "ciudadSalida": "Gales",
+      "ciudadLlegada": "Turquia",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E009",
+        "nombre": "José Pérez",
+        "user": "jperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Av. Las Palmas 102, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 17000.0
+      },
+      "piloto2": {
+        "id": "E033",
+        "nombre": "Miguel Álvarez",
+        "user": "malvarez",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Calle Olmo 55, Cancún",
+        "fechaNacimiento": "1989-09-12",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E011",
+        "nombre": "Iván Morales",
+        "user": "imorales",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 67, Querétaro",
+        "fechaNacimiento": "1988-10-12",
+        "salario": 17800.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E025",
+        "nombre": "Lucía Pérez",
+        "user": "lperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Reforma 150, Monterrey",
+        "fechaNacimiento": "1996-11-15",
+        "salario": 18000.0
+      },
+      "asistente4": {
+        "id": "E026",
+        "nombre": "Elena Sánchez",
+        "user": "esanchez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 22, Puebla",
+        "fechaNacimiento": "1993-03-30",
+        "salario": 17200.0
+      }
+    },
+    "cliente": {
+      "nombres": "Phil",
+      "apellidos": "Jones",
+      "nacionalidad": "Inglesa",
+      "fechaNacimiento": "1991-06-13"
+    }
+  },
+  {
+    "id": "71a4aa7e-c309-4f7a-9777-6a1e06710faa",
+    "idVuelo": 0,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "H8",
+    "vuelo": {
+      "id": 12,
+      "numeroPasajeros": 120,
+      "costoBoleto": 1500.0,
+      "tiempoRecorrido": "10 hrs, 30 min",
+      "ciudadSalida": "Madrid",
+      "ciudadLlegada": "Lisboa",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 0,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E049",
+        "nombre": "Juan Gomez",
+        "user": "Juan12",
+        "pass": "Juan12",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Col Centro",
+        "fechaNacimiento": "2025-06-01",
+        "salario": 30000.0
+      },
+      "piloto2": {
+        "id": "E040",
+        "nombre": "Jorge Ruiz",
+        "user": "jruiz",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Col. Las Palmas, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E005",
+        "nombre": "Diego Ramírez",
+        "user": "dramirez",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Calle Viento 45, Monterrey",
+        "fechaNacimiento": "1989-09-10",
+        "salario": 17500.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E015",
+        "nombre": "Natalia Rivera",
+        "user": "nrivera",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Calle Luna 123, Sevilla",
+        "fechaNacimiento": "1994-11-15",
+        "salario": 17600.0
+      },
+      "asistente4": {
+        "id": "E019",
+        "nombre": "Andrea Salinas",
+        "user": "asalinas",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Hidalgo 22, Oaxaca",
+        "fechaNacimiento": "1997-08-21",
+        "salario": 17250.0
+      }
+    },
+    "cliente": {
+      "nombres": "Ana Lucía",
+      "apellidos": "Rodríguez Soto",
+      "nacionalidad": "Costarricense",
+      "fechaNacimiento": "2000-03-15"
+    }
+  },
+  {
+    "id": "2889ada4-3f19-4cf9-9227-040c90463a1e",
+    "idVuelo": 10,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "D4",
+    "vuelo": {
+      "id": 10,
+      "numeroPasajeros": 180,
+      "costoBoleto": 150.0,
+      "tiempoRecorrido": "8 hr, 30 min",
+      "ciudadSalida": "Gales",
+      "ciudadLlegada": "Turquia",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E009",
+        "nombre": "José Pérez",
+        "user": "jperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Av. Las Palmas 102, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 17000.0
+      },
+      "piloto2": {
+        "id": "E033",
+        "nombre": "Miguel Álvarez",
+        "user": "malvarez",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Calle Olmo 55, Cancún",
+        "fechaNacimiento": "1989-09-12",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E011",
+        "nombre": "Iván Morales",
+        "user": "imorales",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 67, Querétaro",
+        "fechaNacimiento": "1988-10-12",
+        "salario": 17800.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E025",
+        "nombre": "Lucía Pérez",
+        "user": "lperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Reforma 150, Monterrey",
+        "fechaNacimiento": "1996-11-15",
+        "salario": 18000.0
+      },
+      "asistente4": {
+        "id": "E026",
+        "nombre": "Elena Sánchez",
+        "user": "esanchez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 22, Puebla",
+        "fechaNacimiento": "1993-03-30",
+        "salario": 17200.0
+      }
+    },
+    "cliente": {
+      "nombres": "Camila Andrea",
+      "apellidos": "Fernández Ríos",
+      "nacionalidad": "Chilena",
+      "fechaNacimiento": "1999-09-30"
+    }
+  },
+  {
+    "id": "aa52d982-da0b-46eb-a956-b1e7108ee13d",
+    "idVuelo": 10,
+    "fechaCompra": "Jun 10, 2025 12:00:00 AM",
+    "numAsiento": "G7",
+    "vuelo": {
+      "id": 10,
+      "numeroPasajeros": 180,
+      "costoBoleto": 150.0,
+      "tiempoRecorrido": "8 hr, 30 min",
+      "ciudadSalida": "Gales",
+      "ciudadLlegada": "Turquia",
+      "fechaSalida": "2025-06-01",
+      "horaSalida": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "fechaLlegada": "2025-06-02",
+      "horaLlegada": {
+        "hour": 12,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "piloto1": {
+        "id": "E009",
+        "nombre": "José Pérez",
+        "user": "jperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Av. Las Palmas 102, León",
+        "fechaNacimiento": "1987-03-22",
+        "salario": 17000.0
+      },
+      "piloto2": {
+        "id": "E033",
+        "nombre": "Miguel Álvarez",
+        "user": "malvarez",
+        "pass": "pass123",
+        "genero": "M",
+        "tipoEmpleado": "Piloto",
+        "direccion": "Calle Olmo 55, Cancún",
+        "fechaNacimiento": "1989-09-12",
+        "salario": 20000.0
+      },
+      "asistente1": {
+        "id": "E011",
+        "nombre": "Iván Morales",
+        "user": "imorales",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 67, Querétaro",
+        "fechaNacimiento": "1988-10-12",
+        "salario": 17800.0
+      },
+      "asistente2": {
+        "id": "E008",
+        "nombre": "Valeria Ríos",
+        "user": "vrios",
+        "pass": "pass123",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Libertad 10, Mérida",
+        "fechaNacimiento": "1993-12-05",
+        "salario": 18000.0
+      },
+      "asistente3": {
+        "id": "E025",
+        "nombre": "Lucía Pérez",
+        "user": "lperez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Av. Reforma 150, Monterrey",
+        "fechaNacimiento": "1996-11-15",
+        "salario": 18000.0
+      },
+      "asistente4": {
+        "id": "E026",
+        "nombre": "Elena Sánchez",
+        "user": "esanchez",
+        "pass": "pass123",
+        "genero": "F",
+        "tipoEmpleado": "AsistenteVuelo",
+        "direccion": "Col. Jardines 22, Puebla",
+        "fechaNacimiento": "1993-03-30",
+        "salario": 17200.0
+      }
+    },
+    "cliente": {
+      "nombres": "Juan Carlos",
+      "apellidos": "Mendoza Salazar",
+      "nacionalidad": "Peruana",
+      "fechaNacimiento": "1990-01-05"
+    }
+  }
+]

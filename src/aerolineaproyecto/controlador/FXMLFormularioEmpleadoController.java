@@ -34,7 +34,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import aerolineaproyecto.excepciones.CamposVaciosException;
 import aerolineaproyecto.excepciones.EdadInvalidaException;
-import aerolineaproyecto.excepciones.SalarioInvalidoException;
+import aerolineaproyecto.excepciones.SalarioNegativoException;
 
 /**
  * FXML Controller class
@@ -193,10 +193,10 @@ private void btnGuardar(ActionEvent event) {
         try {
             salario = Double.parseDouble(tfSalario.getText().trim());
         } catch (NumberFormatException e) {
-            throw new SalarioInvalidoException("Salario inválido. Debe ser un número válido.");
+            throw new SalarioNegativoException("Salario inválido. Debe ser un número válido.");
         }
         if (salario < 0) {
-            throw new SalarioInvalidoException("El salario no puede ser negativo.");
+            throw new SalarioNegativoException("El salario no puede ser negativo.");
         }
 
         // Validar edad mínima 16 años al 2025
@@ -277,7 +277,7 @@ private void btnGuardar(ActionEvent event) {
         Stage stage = Utilidad.obtenerEscenarioComponente(btnGuardar);
         stage.close();
 
-    } catch (CamposVaciosException | EdadInvalidaException | SalarioInvalidoException ex) {
+    } catch (CamposVaciosException | EdadInvalidaException | SalarioNegativoException ex) {
         Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error de validación", ex.getMessage());
     } catch (IllegalArgumentException ex) {
         Utilidad.mostrarAlertaSimple(Alert.AlertType.ERROR, "Error", ex.getMessage());

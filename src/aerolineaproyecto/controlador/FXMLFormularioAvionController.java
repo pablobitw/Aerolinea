@@ -56,43 +56,38 @@ public class FXMLFormularioAvionController implements Initializable {
     }
 
     @FXML
-    private void btnGuardar(ActionEvent event) {
-        String id = tfID.getText();
-        String modelo = tfModelo.getText();
-        String capacidadStr = tfCapacidad.getText();
-        String pesoStr = tfPeso.getText();
-
-        if (id.isEmpty() || modelo.isEmpty() || capacidadStr.isEmpty() || pesoStr.isEmpty()) {
-            showError("Debe completar todos los campos.");
-            return;
-        }
-
-        int capacidad;
-        double peso;
-
-        try {
-            capacidad = Integer.parseInt(capacidadStr);
-            peso = Double.parseDouble(pesoStr);
-        } catch (NumberFormatException e) {
-            showError("Capacidad debe ser número entero y Peso un número decimal.");
-            return;
-        }
-
-        Avion avion = (avionEditar != null) ? avionEditar : new Avion();
-
-        int idInt = Integer.parseInt(id); // si id es String, conviértelo a int
-
-        avion.setId(idInt);
-        avion.setModelo(modelo);
-        avion.setCapacidad(capacidad);
-        avion.setPeso(peso);
-
-        if (onAvionGuardado != null) {
-            onAvionGuardado.accept(avion);
-        }
-
-        cerrarVentana(event);
+private void btnGuardar(ActionEvent event) {
+    String id = tfID.getText();
+    String modelo = tfModelo.getText();
+    String capacidadStr = tfCapacidad.getText();
+    String pesoStr = tfPeso.getText();
+    
+    if (id.isEmpty() || modelo.isEmpty() || capacidadStr.isEmpty() || pesoStr.isEmpty()) {
+        showError("Debe completar todos los campos.");
+        return;
     }
+    
+    int capacidad;
+    double peso;
+    try {
+        capacidad = Integer.parseInt(capacidadStr);
+        peso = Double.parseDouble(pesoStr);
+    } catch (NumberFormatException e) {
+        showError("Capacidad debe ser número entero y Peso un número decimal.");
+        return;
+    }
+    
+    Avion avion = (avionEditar != null) ? avionEditar : new Avion();
+    avion.setId(id);  // Ahora directamente como String
+    avion.setModelo(modelo);
+    avion.setCapacidad(capacidad);
+    avion.setPeso(peso);
+    
+    if (onAvionGuardado != null) {
+        onAvionGuardado.accept(avion);
+    }
+    cerrarVentana(event);
+}
 
     private void cerrarVentana(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

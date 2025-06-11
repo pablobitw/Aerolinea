@@ -11,7 +11,7 @@ package aerolineaproyecto.modelo.pojo;
 public class Avion {
     private int capacidad;
     private boolean estado; 
-    private int id; 
+    private String id; 
     private String modelo;
     private double peso;
     private Aerolinea aerolinea;
@@ -20,13 +20,21 @@ public class Avion {
     }
 
     public Avion(int capacidad, boolean estado,
-                 int id, String modelo, double peso, Aerolinea aerolinea) {
+                 String id, String modelo, double peso, Aerolinea aerolinea) {
         this.capacidad = capacidad;
         this.estado = estado;
         this.id = id;
         this.modelo = modelo;
         this.peso = peso;
         this.aerolinea = aerolinea;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getCapacidad() {
@@ -37,11 +45,11 @@ public class Avion {
         this.capacidad = capacidad;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,7 +1,7 @@
 package aerolineaproyecto.modelo.pojo;
 
 public class Aerolinea {
-    private int id;
+    private String id;
     private String direccion;
     private String nombre;
     private String contacto;
@@ -9,7 +9,7 @@ public class Aerolinea {
 
     public Aerolinea() {}
 
-    public Aerolinea(int id, String direccion, String nombre,
+    public Aerolinea(String id, String direccion, String nombre,
                      String contacto, String telefono) {
         this.id = id;
         this.direccion = direccion;
@@ -18,11 +18,11 @@ public class Aerolinea {
         this.telefono = telefono;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

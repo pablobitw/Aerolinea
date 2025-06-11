@@ -3,6 +3,7 @@ package aerolineaproyecto.modelo.dao;
 import aerolineaproyecto.modelo.pojo.Empleado;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -11,16 +12,15 @@ import java.util.List;
 
 public class EmpleadoDAO {
 
-    // Ruta al archivo JSON, ahora apuntando a la carpeta src (acceso en disco)
-    private static final String ARCHIVO_JSON = "src/aerolineaproyecto/recursos/data/empleados.json";
+    private static final String RUTA_RELATIVA_JSON = "data/empleados.json";
 
     public static List<Empleado> cargarEmpleados() {
         List<Empleado> empleados = new ArrayList<>();
-        File archivo = new File(ARCHIVO_JSON);
+        File archivo = new File(RUTA_RELATIVA_JSON);
 
         if (!archivo.exists()) {
             System.err.println("No se encontró el archivo: " + archivo.getAbsolutePath());
-            return empleados;  // Retorna lista vacía si no existe archivo
+            return empleados;
         }
 
         try (Reader reader = new InputStreamReader(new FileInputStream(archivo), StandardCharsets.UTF_8)) {
@@ -35,12 +35,10 @@ public class EmpleadoDAO {
     }
 
     public static void guardarEmpleados(List<Empleado> empleados) {
-        File archivo = new File(ARCHIVO_JSON);
-        // Crear carpetas padres si no existen
+        File archivo = new File(RUTA_RELATIVA_JSON);
         if (archivo.getParentFile() != null) {
             archivo.getParentFile().mkdirs();
         }
-
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(archivo), StandardCharsets.UTF_8)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(empleados, writer);
